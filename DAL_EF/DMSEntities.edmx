@@ -1,0 +1,1126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Number" Type="nvarchar" MaxLength="64" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="64" />
+          <Property Name="Province" Type="nvarchar" MaxLength="64" />
+          <Property Name="Country" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Agreement">
+          <Key>
+            <PropertyRef Name="AgreementId" />
+          </Key>
+          <Property Name="AgreementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OfferId" Type="int" Nullable="false" />
+          <Property Name="AgreementNumber" Type="int" />
+          <Property Name="CreateDate" Type="date" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="Title" Type="nchar" MaxLength="32" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="64" />
+          <Property Name="Body" Type="nvarchar" MaxLength="64" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+          </Key>
+          <Property Name="InvoiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgreementId" Type="int" Nullable="false" />
+          <Property Name="InvoiceNumber" Type="int" Nullable="false" />
+          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="OrganizationId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="date" />
+          <Property Name="InvoiceDate" Type="date" />
+          <Property Name="DueDays" Type="int" />
+          <Property Name="DueDate" Type="date" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="DiscountAmount" Type="float" />
+          <Property Name="DiscountPercent" Type="int" />
+          <Property Name="Vat" Type="int" />
+          <Property Name="VatAmount" Type="float" />
+          <Property Name="TotalAmount" Type="float" />
+          <Property Name="Currency" Type="nchar" MaxLength="16" />
+          <Property Name="CurrencyRate" Type="float" />
+          <Property Name="Disclaimer" Type="nvarchar" MaxLength="64" />
+          <Property Name="IsPaid" Type="bit" Nullable="false" />
+          <Property Name="PaidDate" Type="date" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InvoiceItem">
+          <Key>
+            <PropertyRef Name="InvoiceItemId" />
+          </Key>
+          <Property Name="InvoiceItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="nchar" MaxLength="32" />
+          <Property Name="InvoiceId" Type="int" Nullable="false" />
+          <Property Name="UnitPrice" Type="float" />
+          <Property Name="Vat" Type="int" />
+          <Property Name="VatUnitPrice" Type="float" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="PriceIncludingVat" Type="float" />
+          <Property Name="PriceExcludingVat" Type="float" />
+          <Property Name="VatAmount" Type="float" />
+          <Property Name="DiscountAmount" Type="float" />
+          <Property Name="DiscountPercentage" Type="float" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notice">
+          <Key>
+            <PropertyRef Name="NoticeId" />
+          </Key>
+          <Property Name="NoticeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoticeText" Type="nvarchar" MaxLength="64" />
+          <Property Name="NoticeNumber" Type="int" />
+          <Property Name="NoticeDate" Type="date" />
+          <Property Name="InvoiceId" Type="int" Nullable="false" />
+          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="OrganizationId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Offer">
+          <Key>
+            <PropertyRef Name="OfferId" />
+          </Key>
+          <Property Name="OfferId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganizationId" Type="int" Nullable="false" />
+          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="OfferNumber" Type="nchar" MaxLength="32" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="DiscountPercent" Type="float" />
+          <Property Name="DiscountAmount" Type="float" />
+          <Property Name="OfferAmount" Type="float" />
+          <Property Name="CreateDate" Type="date" />
+          <Property Name="ValidityDays" Type="int" />
+          <Property Name="ValidityDate" Type="date" />
+          <Property Name="Disclaimer" Type="nvarchar" MaxLength="64" />
+          <Property Name="Title" Type="nchar" MaxLength="32" />
+          <Property Name="Subject" Type="nchar" MaxLength="32" />
+          <Property Name="Body" Type="nchar" MaxLength="32" />
+          <Property Name="Currency" Type="nchar" MaxLength="16" />
+          <Property Name="CurrencyRate" Type="float" />
+          <Property Name="Vat" Type="int" />
+          <Property Name="VatAmount" Type="float" />
+          <Property Name="ReasonForDeclining" Type="nvarchar" MaxLength="64" />
+          <Property Name="IsAccepted" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="OrganizationId" />
+          </Key>
+          <Property Name="OrganizationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganizationName" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="CompanyId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="VatNumber" Type="nchar" MaxLength="32" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="64" />
+          <Property Name="Email" Type="nvarchar" MaxLength="64" />
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="32" />
+          <Property Name="Type" Type="nchar" MaxLength="10" />
+          <Property Name="AddressId" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonFirstName" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="PersonMiddleName" Type="nvarchar" MaxLength="64" />
+          <Property Name="PersonLastName" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="IdNumber" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="64" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="64" />
+          <Property Name="AddressId" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="EMBG" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_Agreement_Offer">
+          <End Role="Offer" Type="Self.Offer" Multiplicity="1" />
+          <End Role="Agreement" Type="Self.Agreement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offer">
+              <PropertyRef Name="OfferId" />
+            </Principal>
+            <Dependent Role="Agreement">
+              <PropertyRef Name="OfferId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Agreement">
+          <End Role="Agreement" Type="Self.Agreement" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agreement">
+              <PropertyRef Name="AgreementId" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="AgreementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceItem_Invoice">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+          <End Role="InvoiceItem" Type="Self.InvoiceItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceId" />
+            </Principal>
+            <Dependent Role="InvoiceItem">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notice_Invoice">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+          <End Role="Notice" Type="Self.Notice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceId" />
+            </Principal>
+            <Dependent Role="Notice">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offer_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Offer" Type="Self.Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="OrganizationId" />
+            </Principal>
+            <Dependent Role="Offer">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offer_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Offer" Type="Self.Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Offer">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organization_Address">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_Address">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spAddress_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AddressId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spAddress_GetAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Street" Type="nvarchar" Mode="In" />
+          <Parameter Name="Number" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spAddress_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AddressId" Type="int" Mode="In" />
+          <Parameter Name="Street" Type="nvarchar" Mode="In" />
+          <Parameter Name="Number" Type="nvarchar" Mode="In" />
+          <Parameter Name="PostalCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State" Type="nvarchar" Mode="In" />
+          <Parameter Name="Province" Type="nvarchar" Mode="In" />
+          <Parameter Name="Country" Type="nvarchar" Mode="In" />
+          <Parameter Name="Active" Type="int" Mode="In" />
+          <Parameter Name="Deleted" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spOrganization_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrganizationId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spOrganization_GetOrganization" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrganizationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompanyId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spOrganization_UpdateOrganization" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrganizationId" Type="int" Mode="In" />
+          <Parameter Name="OrganizationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompanyId" Type="nvarchar" Mode="In" />
+          <Parameter Name="VatNumber" Type="nchar" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="PhoneNumber" Type="nchar" Mode="In" />
+          <Parameter Name="Type" Type="nchar" Mode="In" />
+          <Parameter Name="AddressId" Type="int" Mode="In" />
+          <Parameter Name="Active" Type="int" Mode="In" />
+          <Parameter Name="Deleted" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spPerson_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PersonId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spPerson_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spPerson_GetLastName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PersonLastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="EMBG" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spPerson_InsertAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Street" Type="nvarchar" Mode="In" />
+          <Parameter Name="Number" Type="int" Mode="In" />
+          <Parameter Name="PostalCode" Type="int" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State" Type="nvarchar" Mode="In" />
+          <Parameter Name="Provice" Type="nvarchar" Mode="In" />
+          <Parameter Name="Country" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsActive" Type="int" Mode="In" />
+          <Parameter Name="IsDeleted" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spPerson_InsertPerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="MiddleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdNumber" Type="int" Mode="In" />
+          <Parameter Name="EmailAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="AddressId" Type="int" Mode="In" />
+          <Parameter Name="IsActive" Type="int" Mode="In" />
+          <Parameter Name="IsDeleted" Type="int" Mode="In" />
+          <Parameter Name="Gender" Type="int" Mode="In" />
+          <Parameter Name="EMBG" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spPerson_UpdateCity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spPerson_UpdateEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdNumber" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spPerson_UpdatePerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PersonId" Type="int" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="MiddleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdNumber" Type="int" Mode="In" />
+          <Parameter Name="EmailAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="AddressId" Type="int" Mode="In" />
+          <Parameter Name="Active" Type="int" Mode="In" />
+          <Parameter Name="Deleted" Type="int" Mode="In" />
+          <Parameter Name="Gender" Type="int" Mode="In" />
+          <Parameter Name="EMBG" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spPersonAddress_InnerJoin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Agreement" EntityType="Self.Agreement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoiceItem" EntityType="Self.InvoiceItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notice" EntityType="Self.Notice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offer" EntityType="Self.Offer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Agreement_Offer" Association="Self.FK_Agreement_Offer">
+            <End Role="Offer" EntitySet="Offer" />
+            <End Role="Agreement" EntitySet="Agreement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Agreement" Association="Self.FK_Invoice_Agreement">
+            <End Role="Agreement" EntitySet="Agreement" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceItem_Invoice" Association="Self.FK_InvoiceItem_Invoice">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="InvoiceItem" EntitySet="InvoiceItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notice_Invoice" Association="Self.FK_Notice_Invoice">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="Notice" EntitySet="Notice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offer_Organization" Association="Self.FK_Offer_Organization">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Offer" EntitySet="Offer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offer_Person" Association="Self.FK_Offer_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Offer" EntitySet="Offer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Organization_Address" Association="Self.FK_Organization_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_Address" Association="Self.FK_Person_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="InvoiceItem">
+          <Key>
+            <PropertyRef Name="InvoiceItemId" />
+          </Key>
+          <Property Name="InvoiceItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+          <Property Name="UnitPrice" Type="Double" />
+          <Property Name="Vat" Type="Int32" />
+          <Property Name="VatUnitPrice" Type="Double" />
+          <Property Name="Quantity" Type="Double" />
+          <Property Name="PriceIncludingVat" Type="Double" />
+          <Property Name="PriceExcludingVat" Type="Double" />
+          <Property Name="VatAmount" Type="Double" />
+          <Property Name="DiscountAmount" Type="Double" />
+          <Property Name="DiscountPercentage" Type="Double" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Invoice" Relationship="Model.FK_InvoiceItem_Invoice" FromRole="InvoiceItem" ToRole="Invoice" />
+        </EntityType>
+        <EntityContainer Name="DMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="InvoiceItems" EntityType="Self.InvoiceItem" />
+          <FunctionImport Name="spAddress_Delete">
+          <Parameter Name="AddressId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spAddress_GetAddress" ReturnType="Collection(Model.spAddress_GetAddress_Result)">
+            <Parameter Name="Street" Mode="In" Type="String" />
+            <Parameter Name="Number" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spAddress_Update">
+            <Parameter Name="AddressId" Mode="In" Type="Int32" />
+            <Parameter Name="Street" Mode="In" Type="String" />
+            <Parameter Name="Number" Mode="In" Type="String" />
+            <Parameter Name="PostalCode" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="Province" Mode="In" Type="String" />
+            <Parameter Name="Country" Mode="In" Type="String" />
+            <Parameter Name="Active" Mode="In" Type="Int32" />
+            <Parameter Name="Deleted" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spOrganization_Delete">
+          <Parameter Name="OrganizationId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spOrganization_GetOrganization" ReturnType="Collection(Model.spOrganization_GetOrganization_Result)">
+            <Parameter Name="OrganizationName" Mode="In" Type="String" />
+            <Parameter Name="CompanyId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spOrganization_UpdateOrganization">
+            <Parameter Name="OrganizationId" Mode="In" Type="Int32" />
+            <Parameter Name="OrganizationName" Mode="In" Type="String" />
+            <Parameter Name="CompanyId" Mode="In" Type="String" />
+            <Parameter Name="VatNumber" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="Type" Mode="In" Type="String" />
+            <Parameter Name="AddressId" Mode="In" Type="Int32" />
+            <Parameter Name="Active" Mode="In" Type="Int32" />
+            <Parameter Name="Deleted" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spPerson_Delete">
+          <Parameter Name="PersonId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spPerson_GetAll" ReturnType="Collection(Model.spPerson_GetAll_Result)" />
+          <FunctionImport Name="spPerson_GetLastName" ReturnType="Collection(Model.spPerson_GetLastName_Result)">
+            <Parameter Name="PersonLastName" Mode="In" Type="String" />
+            <Parameter Name="EMBG" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spPerson_InsertAddress" ReturnType="Collection(Decimal)">
+            <Parameter Name="Street" Mode="In" Type="String" />
+            <Parameter Name="Number" Mode="In" Type="Int32" />
+            <Parameter Name="PostalCode" Mode="In" Type="Int32" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="Provice" Mode="In" Type="String" />
+            <Parameter Name="Country" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Int32" />
+            <Parameter Name="IsDeleted" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spPerson_InsertPerson">
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="MiddleName" Mode="In" Type="String" />
+            <Parameter Name="IdNumber" Mode="In" Type="Int32" />
+            <Parameter Name="EmailAddress" Mode="In" Type="String" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="AddressId" Mode="In" Type="Int32" />
+            <Parameter Name="IsActive" Mode="In" Type="Int32" />
+            <Parameter Name="IsDeleted" Mode="In" Type="Int32" />
+            <Parameter Name="Gender" Mode="In" Type="Int32" />
+            <Parameter Name="EMBG" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spPerson_UpdateCity">
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="AddressId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spPerson_UpdateEmail">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="IdNumber" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spPerson_UpdatePerson">
+            <Parameter Name="PersonId" Mode="In" Type="Int32" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="MiddleName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="IdNumber" Mode="In" Type="Int32" />
+            <Parameter Name="EmailAddress" Mode="In" Type="String" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="AddressId" Mode="In" Type="Int32" />
+            <Parameter Name="Active" Mode="In" Type="Int32" />
+            <Parameter Name="Deleted" Mode="In" Type="Int32" />
+            <Parameter Name="Gender" Mode="In" Type="Int32" />
+            <Parameter Name="EMBG" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spPersonAddress_InnerJoin" ReturnType="Collection(Model.spPersonAddress_InnerJoin_Result)" />
+          <EntitySet Name="Addresses" EntityType="Model.Address" />
+          <EntitySet Name="People" EntityType="Model.Person" />
+          <AssociationSet Name="FK_Person_Address" Association="Model.FK_Person_Address">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <EntitySet Name="Agreements" EntityType="Model.Agreement" />
+          <EntitySet Name="Invoices" EntityType="Model.Invoice" />
+          <AssociationSet Name="FK_Invoice_Agreement" Association="Model.FK_Invoice_Agreement">
+            <End Role="Agreement" EntitySet="Agreements" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceItem_Invoice" Association="Model.FK_InvoiceItem_Invoice">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="InvoiceItem" EntitySet="InvoiceItems" />
+          </AssociationSet>
+          <EntitySet Name="Notices" EntityType="Model.Notice" />
+          <AssociationSet Name="FK_Notice_Invoice" Association="Model.FK_Notice_Invoice">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="Notice" EntitySet="Notices" />
+          </AssociationSet>
+          <EntitySet Name="Offers" EntityType="Model.Offer" />
+          <AssociationSet Name="FK_Agreement_Offer" Association="Model.FK_Agreement_Offer">
+            <End Role="Offer" EntitySet="Offers" />
+            <End Role="Agreement" EntitySet="Agreements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offer_Person" Association="Model.FK_Offer_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Offer" EntitySet="Offers" />
+          </AssociationSet>
+          <EntitySet Name="Organizations" EntityType="Model.Organization" />
+          <AssociationSet Name="FK_Organization_Address" Association="Model.FK_Organization_Address">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offer_Organization" Association="Model.FK_Offer_Organization">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="Offer" EntitySet="Offers" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="spAddress_GetAddress_Result">
+          <Property Type="Int32" Name="AddressId" Nullable="false" />
+          <Property Type="String" Name="Street" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="Number" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="City" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="Province" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="Country" Nullable="false" MaxLength="64" />
+          <Property Type="Int32" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="IsDeleted" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spOrganization_GetOrganization_Result">
+          <Property Type="Int32" Name="OrganizationId" Nullable="false" />
+          <Property Type="String" Name="OrganizationName" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="CompanyId" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="VatNumber" Nullable="false" MaxLength="32" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="32" />
+          <Property Type="String" Name="Type" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="AddressId" Nullable="true" />
+          <Property Type="Int32" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="IsDeleted" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spPerson_GetAll_Result">
+          <Property Type="Int32" Name="PersonId" Nullable="false" />
+          <Property Type="String" Name="PersonFirstName" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="PersonMiddleName" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="PersonLastName" Nullable="false" MaxLength="64" />
+          <Property Type="Int32" Name="IdNumber" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="64" />
+          <Property Type="Int32" Name="AddressId" Nullable="true" />
+          <Property Type="Int32" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="IsDeleted" Nullable="true" />
+          <Property Type="Int32" Name="Gender" Nullable="true" />
+          <Property Type="String" Name="EMBG" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="spPerson_GetLastName_Result">
+          <Property Type="Int32" Name="PersonId" Nullable="false" />
+          <Property Type="String" Name="PersonFirstName" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="PersonMiddleName" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="PersonLastName" Nullable="false" MaxLength="64" />
+          <Property Type="Int32" Name="IdNumber" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="64" />
+          <Property Type="Int32" Name="AddressId" Nullable="true" />
+          <Property Type="Int32" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="IsDeleted" Nullable="true" />
+          <Property Type="Int32" Name="Gender" Nullable="true" />
+          <Property Type="String" Name="EMBG" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="spPersonAddress_InnerJoin_Result">
+          <Property Type="String" Name="PersonFirstName" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="City" Nullable="false" MaxLength="64" />
+        </ComplexType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Street" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Number" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Province" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="People" Relationship="Model.FK_Person_Address" FromRole="Address" ToRole="Person" />
+          <NavigationProperty Name="Organizations" Relationship="Model.FK_Organization_Address" FromRole="Address" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonFirstName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PersonMiddleName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PersonLastName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="IdNumber" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="AddressId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Gender" Type="Int32" />
+          <Property Name="EMBG" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Address" Relationship="Model.FK_Person_Address" FromRole="Person" ToRole="Address" />
+          <NavigationProperty Name="Offers" Relationship="Model.FK_Offer_Person" FromRole="Person" ToRole="Offer" />
+        </EntityType>
+        <Association Name="FK_Person_Address">
+          <End Type="Model.Address" Role="Address" Multiplicity="0..1" />
+          <End Type="Model.Person" Role="Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Agreement">
+          <Key>
+            <PropertyRef Name="AgreementId" />
+          </Key>
+          <Property Name="AgreementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OfferId" Type="Int32" Nullable="false" />
+          <Property Name="AgreementNumber" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="0" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="Title" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Invoices" Relationship="Model.FK_Invoice_Agreement" FromRole="Agreement" ToRole="Invoice" />
+          <NavigationProperty Name="Offer" Relationship="Model.FK_Agreement_Offer" FromRole="Agreement" ToRole="Offer" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+          </Key>
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgreementId" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceNumber" Type="Int32" Nullable="false" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="0" />
+          <Property Name="InvoiceDate" Type="DateTime" Precision="0" />
+          <Property Name="DueDays" Type="Int32" />
+          <Property Name="DueDate" Type="DateTime" Precision="0" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="DiscountAmount" Type="Double" />
+          <Property Name="DiscountPercent" Type="Int32" />
+          <Property Name="Vat" Type="Int32" />
+          <Property Name="VatAmount" Type="Double" />
+          <Property Name="TotalAmount" Type="Double" />
+          <Property Name="Currency" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+          <Property Name="CurrencyRate" Type="Double" />
+          <Property Name="Disclaimer" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="IsPaid" Type="Boolean" Nullable="false" />
+          <Property Name="PaidDate" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Agreement" Relationship="Model.FK_Invoice_Agreement" FromRole="Invoice" ToRole="Agreement" />
+          <NavigationProperty Name="InvoiceItems" Relationship="Model.FK_InvoiceItem_Invoice" FromRole="Invoice" ToRole="InvoiceItem" />
+          <NavigationProperty Name="Notices" Relationship="Model.FK_Notice_Invoice" FromRole="Invoice" ToRole="Notice" />
+        </EntityType>
+        <Association Name="FK_Invoice_Agreement">
+          <End Type="Model.Agreement" Role="Agreement" Multiplicity="1" />
+          <End Type="Model.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agreement">
+              <PropertyRef Name="AgreementId" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="AgreementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceItem_Invoice">
+          <End Type="Model.Invoice" Role="Invoice" Multiplicity="1" />
+          <End Type="Model.InvoiceItem" Role="InvoiceItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceId" />
+            </Principal>
+            <Dependent Role="InvoiceItem">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Notice">
+          <Key>
+            <PropertyRef Name="NoticeId" />
+          </Key>
+          <Property Name="NoticeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoticeText" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="NoticeNumber" Type="Int32" />
+          <Property Name="NoticeDate" Type="DateTime" Precision="0" />
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Invoice" Relationship="Model.FK_Notice_Invoice" FromRole="Notice" ToRole="Invoice" />
+        </EntityType>
+        <Association Name="FK_Notice_Invoice">
+          <End Type="Model.Invoice" Role="Invoice" Multiplicity="1" />
+          <End Type="Model.Notice" Role="Notice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceId" />
+            </Principal>
+            <Dependent Role="Notice">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Offer">
+          <Key>
+            <PropertyRef Name="OfferId" />
+          </Key>
+          <Property Name="OfferId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="OfferNumber" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="DiscountPercent" Type="Double" />
+          <Property Name="DiscountAmount" Type="Double" />
+          <Property Name="OfferAmount" Type="Double" />
+          <Property Name="CreateDate" Type="DateTime" Precision="0" />
+          <Property Name="ValidityDays" Type="Int32" />
+          <Property Name="ValidityDate" Type="DateTime" Precision="0" />
+          <Property Name="Disclaimer" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
+          <Property Name="Body" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
+          <Property Name="Currency" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+          <Property Name="CurrencyRate" Type="Double" />
+          <Property Name="Vat" Type="Int32" />
+          <Property Name="VatAmount" Type="Double" />
+          <Property Name="ReasonForDeclining" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="IsAccepted" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Agreements" Relationship="Model.FK_Agreement_Offer" FromRole="Offer" ToRole="Agreement" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Offer_Person" FromRole="Offer" ToRole="Person" />
+          <NavigationProperty Name="Organization" Relationship="Model.FK_Offer_Organization" FromRole="Offer" ToRole="Organization" />
+        </EntityType>
+        <Association Name="FK_Agreement_Offer">
+          <End Type="Model.Offer" Role="Offer" Multiplicity="1" />
+          <End Type="Model.Agreement" Role="Agreement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offer">
+              <PropertyRef Name="OfferId" />
+            </Principal>
+            <Dependent Role="Agreement">
+              <PropertyRef Name="OfferId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offer_Person">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.Offer" Role="Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Offer">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="OrganizationId" />
+          </Key>
+          <Property Name="OrganizationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="VatNumber" Type="String" Nullable="false" MaxLength="32" FixedLength="true" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AddressId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="Model.FK_Organization_Address" FromRole="Organization" ToRole="Address" />
+          <NavigationProperty Name="Offers" Relationship="Model.FK_Offer_Organization" FromRole="Organization" ToRole="Offer" />
+        </EntityType>
+        <Association Name="FK_Organization_Address">
+          <End Type="Model.Address" Role="Address" Multiplicity="0..1" />
+          <End Type="Model.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offer_Organization">
+          <End Type="Model.Organization" Role="Organization" Multiplicity="1" />
+          <End Type="Model.Offer" Role="Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="OrganizationId" />
+            </Principal>
+            <Dependent Role="Offer">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="DMSEntities">
+          <EntitySetMapping Name="InvoiceItems">
+            <EntityTypeMapping TypeName="Model.InvoiceItem">
+              <MappingFragment StoreEntitySet="InvoiceItem">
+                <ScalarProperty Name="InvoiceItemId" ColumnName="InvoiceItemId" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Vat" ColumnName="Vat" />
+                <ScalarProperty Name="VatUnitPrice" ColumnName="VatUnitPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="PriceIncludingVat" ColumnName="PriceIncludingVat" />
+                <ScalarProperty Name="PriceExcludingVat" ColumnName="PriceExcludingVat" />
+                <ScalarProperty Name="VatAmount" ColumnName="VatAmount" />
+                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+                <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spAddress_Delete" FunctionName="Model.Store.spAddress_Delete" />
+          <FunctionImportMapping FunctionImportName="spAddress_GetAddress" FunctionName="Model.Store.spAddress_GetAddress">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.spAddress_GetAddress_Result">
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spAddress_Update" FunctionName="Model.Store.spAddress_Update" />
+          <FunctionImportMapping FunctionImportName="spOrganization_Delete" FunctionName="Model.Store.spOrganization_Delete" />
+          <FunctionImportMapping FunctionImportName="spOrganization_GetOrganization" FunctionName="Model.Store.spOrganization_GetOrganization">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.spOrganization_GetOrganization_Result">
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="VatNumber" ColumnName="VatNumber" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spOrganization_UpdateOrganization" FunctionName="Model.Store.spOrganization_UpdateOrganization" />
+          <FunctionImportMapping FunctionImportName="spPerson_Delete" FunctionName="Model.Store.spPerson_Delete" />
+          <FunctionImportMapping FunctionImportName="spPerson_GetAll" FunctionName="Model.Store.spPerson_GetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.spPerson_GetAll_Result">
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="PersonFirstName" ColumnName="PersonFirstName" />
+                <ScalarProperty Name="PersonMiddleName" ColumnName="PersonMiddleName" />
+                <ScalarProperty Name="PersonLastName" ColumnName="PersonLastName" />
+                <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EMBG" ColumnName="EMBG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spPerson_GetLastName" FunctionName="Model.Store.spPerson_GetLastName">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.spPerson_GetLastName_Result">
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="PersonFirstName" ColumnName="PersonFirstName" />
+                <ScalarProperty Name="PersonMiddleName" ColumnName="PersonMiddleName" />
+                <ScalarProperty Name="PersonLastName" ColumnName="PersonLastName" />
+                <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EMBG" ColumnName="EMBG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spPerson_InsertAddress" FunctionName="Model.Store.spPerson_InsertAddress" />
+          <FunctionImportMapping FunctionImportName="spPerson_InsertPerson" FunctionName="Model.Store.spPerson_InsertPerson" />
+          <FunctionImportMapping FunctionImportName="spPerson_UpdateCity" FunctionName="Model.Store.spPerson_UpdateCity" />
+          <FunctionImportMapping FunctionImportName="spPerson_UpdateEmail" FunctionName="Model.Store.spPerson_UpdateEmail" />
+          <FunctionImportMapping FunctionImportName="spPerson_UpdatePerson" FunctionName="Model.Store.spPerson_UpdatePerson" />
+          <FunctionImportMapping FunctionImportName="spPersonAddress_InnerJoin" FunctionName="Model.Store.spPersonAddress_InnerJoin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.spPersonAddress_InnerJoin_Result">
+                <ScalarProperty Name="PersonFirstName" ColumnName="PersonFirstName" />
+                <ScalarProperty Name="City" ColumnName="City" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="Model.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="Model.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="EMBG" ColumnName="EMBG" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+                <ScalarProperty Name="PersonLastName" ColumnName="PersonLastName" />
+                <ScalarProperty Name="PersonMiddleName" ColumnName="PersonMiddleName" />
+                <ScalarProperty Name="PersonFirstName" ColumnName="PersonFirstName" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Agreements">
+            <EntityTypeMapping TypeName="Model.Agreement">
+              <MappingFragment StoreEntitySet="Agreement">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="AgreementNumber" ColumnName="AgreementNumber" />
+                <ScalarProperty Name="OfferId" ColumnName="OfferId" />
+                <ScalarProperty Name="AgreementId" ColumnName="AgreementId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="Model.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="Disclaimer" ColumnName="Disclaimer" />
+                <ScalarProperty Name="CurrencyRate" ColumnName="CurrencyRate" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="VatAmount" ColumnName="VatAmount" />
+                <ScalarProperty Name="Vat" ColumnName="Vat" />
+                <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="DueDays" ColumnName="DueDays" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+                <ScalarProperty Name="AgreementId" ColumnName="AgreementId" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notices">
+            <EntityTypeMapping TypeName="Model.Notice">
+              <MappingFragment StoreEntitySet="Notice">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="NoticeDate" ColumnName="NoticeDate" />
+                <ScalarProperty Name="NoticeNumber" ColumnName="NoticeNumber" />
+                <ScalarProperty Name="NoticeText" ColumnName="NoticeText" />
+                <ScalarProperty Name="NoticeId" ColumnName="NoticeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offers">
+            <EntityTypeMapping TypeName="Model.Offer">
+              <MappingFragment StoreEntitySet="Offer">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
+                <ScalarProperty Name="ReasonForDeclining" ColumnName="ReasonForDeclining" />
+                <ScalarProperty Name="VatAmount" ColumnName="VatAmount" />
+                <ScalarProperty Name="Vat" ColumnName="Vat" />
+                <ScalarProperty Name="CurrencyRate" ColumnName="CurrencyRate" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Disclaimer" ColumnName="Disclaimer" />
+                <ScalarProperty Name="ValidityDate" ColumnName="ValidityDate" />
+                <ScalarProperty Name="ValidityDays" ColumnName="ValidityDays" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="OfferAmount" ColumnName="OfferAmount" />
+                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+                <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="OfferNumber" ColumnName="OfferNumber" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="OfferId" ColumnName="OfferId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizations">
+            <EntityTypeMapping TypeName="Model.Organization">
+              <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="VatNumber" ColumnName="VatNumber" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

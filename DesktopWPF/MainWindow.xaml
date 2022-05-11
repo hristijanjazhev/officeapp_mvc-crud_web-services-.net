@@ -1,0 +1,63 @@
+﻿<Window x:Class="DesktopWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesktopWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="745.333" Width="350">
+    <Grid Margin="0,0,0,0" HorizontalAlignment="Left" Width="350">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="316"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="22,87,0,0" Height="22" Click="Search_Button_Click"/>
+
+        <Label Name="defaultSearchOneLabel" Content="Default Search One" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,10,0,0" Width="120" Height="26"/>
+        <TextBox Name="defaultSearchOneInsert" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="188,10,0,0"/>
+        <Label Name="defaultSearchTwoLabel" Content="Default Search Two" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="21,41,0,0" Width="120" Height="26"/>
+        <TextBox x:Name="defaultSearchTwoInsert" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="188,41,0,0"/>
+
+        <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="137,73,0,0" Width="170" Height="52" Foreground="Red">
+            <TextBlock Name="searchResultLabel" TextWrapping="WrapWithOverflow"></TextBlock>
+        </Label>
+
+        <ListBox Name="searchResultListBox" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="286" Margin="22,130,0,0" SelectionChanged="SearchResultListBox_SelectionChanged"/>
+        <ListBox x:Name="searchResultListBox_Copy" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="286" Margin="21,245,0,0" SelectionChanged="SearchResultListBox_SelectionChanged"/>
+
+        <Grid x:Name="personGrid" HorizontalAlignment="Left" Margin="10,307,0,0">
+            <Label Name="defaultOneLabel" Content="Default One" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,43,0,0" Width="120" Height="26"/>
+            <TextBox x:Name="defaultOneInsert" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="176,43,0,0"/>
+            <Label Name="defaultTwoLabel" Content="Default Two" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,71,0,0" Width="120" Height="26"/>
+            <TextBox x:Name="defaultTwoInsert" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="176,71,0,0"/>
+            <Label Name="defaultThreeLabel" Content="Default Three" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,99,0,0" Width="120" Height="26"/>
+            <TextBox x:Name="defaultThreeInsert" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="176,99,0,0"/>
+            <Label Name="defaultFourLabel" Content="Default Four" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,127,0,0" Width="120" Height="26"/>
+            <TextBox x:Name="defaultFourInsert" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="176,127,0,0"/>
+            <Button Content="Insert" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="10,356,0,0" Height="22" Click="Insert_Button_Click"/>
+            <Label Name="defaultFiveLabel" Content="Default Five" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,155,0,0" Width="120" Height="26"/>
+            <TextBox x:Name="defaultFiveInsert" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="176,155,0,0"/>
+            <Label Name="defaultSixLabel" Content="Default Six" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,183,0,0" Width="120" Height="26"/>
+            <TextBox x:Name="defaultSixInsert" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="176,183,0,0"/>
+            <Label Name="defaultSevenLabel" Content="Default Seven" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,211,0,0" Width="120" Height="26"/>
+            <TextBox x:Name="defaultSevenInsert" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="176,211,0,0"/>
+            <Label Name="defaultEightLabel" Content="Default Eight" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,239,0,0" Width="120" Height="26"/>
+            <TextBox x:Name="defaultEightInsert" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="176,239,0,0"/>
+            <Label Name="defaultNineLabel" Content="Default Nine" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,267,0,0" Width="120" Height="26"/>
+            <TextBox x:Name="defaultNineInsert" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="176,267,0,0"/>
+            <Label Name="defaultTenLabel" Content="Default Ten" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,295,0,0" Width="120" Height="26"/>
+            <TextBox x:Name="defaultTenInsert" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="176,295,0,0"/>
+            <Label x:Name="defaultElevenLabel" Content="Default Eleven" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,323,0,0" Width="120" Height="26"/>
+            <TextBox x:Name="defaultElevenInsert" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="176,323,0,0"/>
+            <Button Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="111,356,0,0" Height="22" Click="Update_Button_Click"/>
+            <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="214,356,0,0" Height="22" Click="Delete_Button_Click"/>
+        </Grid>
+
+        <CheckBox Name="personCheckBox" Content="Person" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="21,287,0,0" Click="PersonCheckBox_Click"/>
+        <CheckBox Name="addressCheckBox" Content="Address" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="121,287,0,0" Click="AddressCheckBox_Click"/>
+        <CheckBox x:Name="organizationCheckBox" Content="Organization" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,287,0,0" Click="OrganizationCheckBox_Click"/>
+
+        <Button Content="Clear" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="206,317,0,0" Height="22" Click="ClearAll"/>
+
+    </Grid>
+</Window>

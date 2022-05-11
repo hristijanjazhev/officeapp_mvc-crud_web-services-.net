@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="96af855fcfc04604add9002470a8262e" Name="Diagram1">
+        <EntityTypeShape EntityType="DMSModel.Address" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DMSModel.Agreement" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DMSModel.Invoice" Width="1.5" PointX="9.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DMSModel.InvoiceItem" Width="1.5" PointX="12" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DMSModel.Notice" Width="1.5" PointX="12" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DMSModel.Offer" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DMSModel.Organization" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DMSModel.Person" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="DMSModel.FK_Organization_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="DMSModel.FK_Person_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="DMSModel.FK_Agreement_Offer" ManuallyRouted="false" />
+        <AssociationConnector Association="DMSModel.FK_Invoice_Agreement" ManuallyRouted="false" />
+        <AssociationConnector Association="DMSModel.FK_InvoiceItem_Invoice" ManuallyRouted="false" />
+        <AssociationConnector Association="DMSModel.FK_Notice_Invoice" ManuallyRouted="false" />
+        <AssociationConnector Association="DMSModel.FK_Offer_Organization" ManuallyRouted="false" />
+        <AssociationConnector Association="DMSModel.FK_Offer_Person" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
