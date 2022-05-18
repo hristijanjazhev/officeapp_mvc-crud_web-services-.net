@@ -11,7 +11,7 @@ namespace WebApp.Controllers
     public class AddressController : Controller
     {
         readonly DMSEntities db = new DMSEntities();
-        AddressDAL addrDAL = new AddressDAL();
+        readonly AddressDAL addrDAL = new AddressDAL();
         //Create
         #region CreateNew
         [HttpGet]
@@ -26,6 +26,7 @@ namespace WebApp.Controllers
             {
                 db.Addresses.Add(addr);
                 db.SaveChanges();
+                TempData["SuccessMessage"] = "Address with id " + addr.AddressId + " was created successfully!";
                 return RedirectToAction("Index", "Address");
             }
             return View("Index");
@@ -63,7 +64,7 @@ namespace WebApp.Controllers
             db.Entry(addr).State = System.Data.Entity.EntityState.Modified;
             addrDAL.Update(addr);
             db.SaveChanges();
-            
+            TempData["SuccessMessage"] = "Address with id " + addr.AddressId + " was updated successfully!";
             return View(addr);
         }
         //[HttpPost]
@@ -87,6 +88,7 @@ namespace WebApp.Controllers
                 var addr = db.Addresses.FirstOrDefault(x => x.AddressId == id);
                 db.Addresses.Remove(addr);
                 db.SaveChanges();
+                TempData["SuccessMessage"] = "Address with id " + addr.AddressId + " was deleted successfully!";
                 return RedirectToAction("Index", "Address");
             }
             return View("Index");

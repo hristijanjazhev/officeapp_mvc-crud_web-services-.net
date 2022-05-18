@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Leonid.Ristanovski\source\repos\DMS\DAL_EF\DMSEntities.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\hristijan\Desktop\work\fsnd\ORIGINALDMS-hristijanj\DAL_EF\DMSEntities.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

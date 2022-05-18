@@ -10,13 +10,13 @@
             <PropertyRef Name="AddressId" />
           </Key>
           <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Street" Type="nvarchar" MaxLength="64" Nullable="false" />
-          <Property Name="Number" Type="nvarchar" MaxLength="64" />
-          <Property Name="PostalCode" Type="nvarchar" MaxLength="64" Nullable="false" />
-          <Property Name="City" Type="nvarchar" MaxLength="64" Nullable="false" />
-          <Property Name="State" Type="nvarchar" MaxLength="64" />
-          <Property Name="Province" Type="nvarchar" MaxLength="64" />
-          <Property Name="Country" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Number" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Province" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
@@ -24,15 +24,17 @@
           <Key>
             <PropertyRef Name="AgreementId" />
           </Key>
-          <Property Name="AgreementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgreementId" Type="int" Nullable="false" />
           <Property Name="OfferId" Type="int" Nullable="false" />
-          <Property Name="AgreementNumber" Type="int" />
-          <Property Name="CreateDate" Type="date" />
-          <Property Name="StartDate" Type="date" />
-          <Property Name="EndDate" Type="date" />
-          <Property Name="Title" Type="nchar" MaxLength="32" />
-          <Property Name="Subject" Type="nvarchar" MaxLength="64" />
-          <Property Name="Body" Type="nvarchar" MaxLength="64" />
+          <Property Name="AgreementNumber" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="InvoiceId" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
@@ -42,24 +44,24 @@
           </Key>
           <Property Name="InvoiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AgreementId" Type="int" Nullable="false" />
-          <Property Name="InvoiceNumber" Type="int" Nullable="false" />
+          <Property Name="InvoiceNumber" Type="nvarchar" MaxLength="64" Nullable="false" />
           <Property Name="PersonId" Type="int" Nullable="false" />
           <Property Name="OrganizationId" Type="int" Nullable="false" />
-          <Property Name="CreateDate" Type="date" />
-          <Property Name="InvoiceDate" Type="date" />
-          <Property Name="DueDays" Type="int" />
-          <Property Name="DueDate" Type="date" />
-          <Property Name="Amount" Type="float" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="InvoiceDate" Type="datetime" Nullable="false" />
+          <Property Name="DueDays" Type="int" Nullable="false" />
+          <Property Name="DueDate" Type="datetime" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
           <Property Name="DiscountAmount" Type="float" />
           <Property Name="DiscountPercent" Type="int" />
-          <Property Name="Vat" Type="int" />
-          <Property Name="VatAmount" Type="float" />
-          <Property Name="TotalAmount" Type="float" />
-          <Property Name="Currency" Type="nchar" MaxLength="16" />
-          <Property Name="CurrencyRate" Type="float" />
-          <Property Name="Disclaimer" Type="nvarchar" MaxLength="64" />
+          <Property Name="Vat" Type="int" Nullable="false" />
+          <Property Name="VatAmount" Type="float" Nullable="false" />
+          <Property Name="TotalAmount" Type="float" Nullable="false" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CurrencyRate" Type="float" Nullable="false" />
+          <Property Name="Disclaimer" Type="nvarchar" MaxLength="50" />
           <Property Name="IsPaid" Type="bit" Nullable="false" />
-          <Property Name="PaidDate" Type="date" />
+          <Property Name="PaidDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
@@ -68,31 +70,31 @@
             <PropertyRef Name="InvoiceItemId" />
           </Key>
           <Property Name="InvoiceItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ItemName" Type="nchar" MaxLength="32" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="64" Nullable="false" />
           <Property Name="InvoiceId" Type="int" Nullable="false" />
-          <Property Name="UnitPrice" Type="float" />
-          <Property Name="Vat" Type="int" />
-          <Property Name="VatUnitPrice" Type="float" />
-          <Property Name="Quantity" Type="float" />
-          <Property Name="PriceIncludingVat" Type="float" />
-          <Property Name="PriceExcludingVat" Type="float" />
-          <Property Name="VatAmount" Type="float" />
+          <Property Name="UnitPrice" Type="float" Nullable="false" />
+          <Property Name="Vat" Type="int" Nullable="false" />
+          <Property Name="VatUnitPrice" Type="float" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="PriceIncludingVat" Type="float" Nullable="false" />
+          <Property Name="PriceExcludingVat" Type="float" Nullable="false" />
+          <Property Name="VatAmount" Type="float" Nullable="false" />
           <Property Name="DiscountAmount" Type="float" />
-          <Property Name="DiscountPercentage" Type="float" />
-          <Property Name="IsActive" Type="int" Nullable="false" />
-          <Property Name="IsDeleted" Type="int" Nullable="false" />
+          <Property Name="DiscountPersentage" Type="float" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="Notice">
+        <EntityType Name="Notices">
           <Key>
             <PropertyRef Name="NoticeId" />
           </Key>
           <Property Name="NoticeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NoticeText" Type="nvarchar" MaxLength="64" />
-          <Property Name="NoticeNumber" Type="int" />
-          <Property Name="NoticeDate" Type="date" />
+          <Property Name="NoticeText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NoticeNumber" Type="int" Nullable="false" />
+          <Property Name="NoticeDate" Type="date" Nullable="false" />
           <Property Name="InvoiceId" Type="int" Nullable="false" />
-          <Property Name="PersonId" Type="int" Nullable="false" />
-          <Property Name="OrganizationId" Type="int" Nullable="false" />
+          <Property Name="PersonId" Type="int" />
+          <Property Name="OrganizationId" Type="int" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
@@ -101,25 +103,26 @@
             <PropertyRef Name="OfferId" />
           </Key>
           <Property Name="OfferId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OrganizationId" Type="int" Nullable="false" />
-          <Property Name="PersonId" Type="int" Nullable="false" />
-          <Property Name="OfferNumber" Type="nchar" MaxLength="32" />
+          <Property Name="OrganizationId" Type="int" />
+          <Property Name="PersonId" Type="int" />
+          <Property Name="InvoiceItemId" Type="int" Nullable="false" />
+          <Property Name="OfferNumber" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="Amount" Type="float" Nullable="false" />
           <Property Name="DiscountPercent" Type="float" />
           <Property Name="DiscountAmount" Type="float" />
-          <Property Name="OfferAmount" Type="float" />
-          <Property Name="CreateDate" Type="date" />
-          <Property Name="ValidityDays" Type="int" />
-          <Property Name="ValidityDate" Type="date" />
-          <Property Name="Disclaimer" Type="nvarchar" MaxLength="64" />
-          <Property Name="Title" Type="nchar" MaxLength="32" />
-          <Property Name="Subject" Type="nchar" MaxLength="32" />
-          <Property Name="Body" Type="nchar" MaxLength="32" />
-          <Property Name="Currency" Type="nchar" MaxLength="16" />
-          <Property Name="CurrencyRate" Type="float" />
-          <Property Name="Vat" Type="int" />
-          <Property Name="VatAmount" Type="float" />
-          <Property Name="ReasonForDeclining" Type="nvarchar" MaxLength="64" />
+          <Property Name="OfferAmount" Type="float" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ValidityDays" Type="int" Nullable="false" />
+          <Property Name="ValidityDate" Type="datetime" Nullable="false" />
+          <Property Name="Disclaimer" Type="nvarchar" MaxLength="256" />
+          <Property Name="Title" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="Body" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="320" Nullable="false" />
+          <Property Name="CurrencyRate" Type="float" Nullable="false" />
+          <Property Name="Vat" Type="int" Nullable="false" />
+          <Property Name="VatAmount" Type="float" Nullable="false" />
+          <Property Name="ReasonForDeclining" Type="nvarchar" MaxLength="1024" Nullable="false" />
           <Property Name="IsAccepted" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
@@ -128,14 +131,14 @@
             <PropertyRef Name="OrganizationId" />
           </Key>
           <Property Name="OrganizationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OrganizationName" Type="nvarchar" MaxLength="64" Nullable="false" />
-          <Property Name="CompanyId" Type="nvarchar" MaxLength="64" Nullable="false" />
-          <Property Name="VatNumber" Type="nchar" MaxLength="32" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="64" />
-          <Property Name="Email" Type="nvarchar" MaxLength="64" />
-          <Property Name="PhoneNumber" Type="nchar" MaxLength="32" />
-          <Property Name="Type" Type="nchar" MaxLength="10" />
-          <Property Name="AddressId" Type="int" />
+          <Property Name="OrganizationName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CompanyId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VatNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Type" Type="int" />
+          <Property Name="AddressId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
@@ -144,18 +147,30 @@
             <PropertyRef Name="PersonId" />
           </Key>
           <Property Name="PersonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PersonFirstName" Type="nvarchar" MaxLength="64" Nullable="false" />
-          <Property Name="PersonMiddleName" Type="nvarchar" MaxLength="64" />
-          <Property Name="PersonLastName" Type="nvarchar" MaxLength="64" Nullable="false" />
-          <Property Name="IdNumber" Type="int" />
-          <Property Name="Email" Type="nvarchar" MaxLength="64" />
-          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="64" />
-          <Property Name="AddressId" Type="int" />
+          <Property Name="PersonFirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PersonLastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PersonMiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddressId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="Gender" Type="int" />
-          <Property Name="EMBG" Type="varchar" MaxLength="255" />
+          <Property Name="Gender" Type="int" Nullable="false" />
+          <Property Name="EMBG" Type="nvarchar" MaxLength="20" />
         </EntityType>
+        <Association Name="FK_Agreement_Invoice">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+          <End Role="Agreement" Type="Self.Agreement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceId" />
+            </Principal>
+            <Dependent Role="Agreement">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Agreement_Offer">
           <End Role="Offer" Type="Self.Offer" Multiplicity="1" />
           <End Role="Agreement" Type="Self.Agreement" Multiplicity="*" />
@@ -180,6 +195,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Invoice_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="OrganizationId" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_InvoiceItem_Invoice">
           <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
           <End Role="InvoiceItem" Type="Self.InvoiceItem" Multiplicity="*" />
@@ -192,20 +231,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Notice_Invoice">
+        <Association Name="FK_Notices_Invoice">
           <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
-          <End Role="Notice" Type="Self.Notice" Multiplicity="*" />
+          <End Role="Notices" Type="Self.Notices" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Invoice">
               <PropertyRef Name="InvoiceId" />
             </Principal>
-            <Dependent Role="Notice">
+            <Dependent Role="Notices">
               <PropertyRef Name="InvoiceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Notices_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
+          <End Role="Notices" Type="Self.Notices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="OrganizationId" />
+            </Principal>
+            <Dependent Role="Notices">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notices_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Notices" Type="Self.Notices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Notices">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offer_InvoiceItem">
+          <End Role="InvoiceItem" Type="Self.InvoiceItem" Multiplicity="1" />
+          <End Role="Offer" Type="Self.Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InvoiceItem">
+              <PropertyRef Name="InvoiceItemId" />
+            </Principal>
+            <Dependent Role="Offer">
+              <PropertyRef Name="InvoiceItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Offer_Organization">
-          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
           <End Role="Offer" Type="Self.Offer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Organization">
@@ -217,7 +292,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Offer_Person">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
           <End Role="Offer" Type="Self.Offer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
@@ -229,7 +304,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Organization_Address">
-          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
           <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Address">
@@ -240,121 +315,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Person_Address">
-          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
-          <End Role="Person" Type="Self.Person" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Address">
-              <PropertyRef Name="AddressId" />
-            </Principal>
-            <Dependent Role="Person">
-              <PropertyRef Name="AddressId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Function Name="spAddress_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="AddressId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="spAddress_GetAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Street" Type="nvarchar" Mode="In" />
-          <Parameter Name="Number" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="spAddress_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="AddressId" Type="int" Mode="In" />
-          <Parameter Name="Street" Type="nvarchar" Mode="In" />
-          <Parameter Name="Number" Type="nvarchar" Mode="In" />
-          <Parameter Name="PostalCode" Type="nvarchar" Mode="In" />
-          <Parameter Name="City" Type="nvarchar" Mode="In" />
-          <Parameter Name="State" Type="nvarchar" Mode="In" />
-          <Parameter Name="Province" Type="nvarchar" Mode="In" />
-          <Parameter Name="Country" Type="nvarchar" Mode="In" />
-          <Parameter Name="Active" Type="int" Mode="In" />
-          <Parameter Name="Deleted" Type="int" Mode="In" />
-        </Function>
-        <Function Name="spOrganization_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="OrganizationId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="spOrganization_GetOrganization" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="OrganizationName" Type="nvarchar" Mode="In" />
-          <Parameter Name="CompanyId" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="spOrganization_UpdateOrganization" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="OrganizationId" Type="int" Mode="In" />
-          <Parameter Name="OrganizationName" Type="nvarchar" Mode="In" />
-          <Parameter Name="CompanyId" Type="nvarchar" Mode="In" />
-          <Parameter Name="VatNumber" Type="nchar" Mode="In" />
-          <Parameter Name="Description" Type="nvarchar" Mode="In" />
-          <Parameter Name="Email" Type="nvarchar" Mode="In" />
-          <Parameter Name="PhoneNumber" Type="nchar" Mode="In" />
-          <Parameter Name="Type" Type="nchar" Mode="In" />
-          <Parameter Name="AddressId" Type="int" Mode="In" />
-          <Parameter Name="Active" Type="int" Mode="In" />
-          <Parameter Name="Deleted" Type="int" Mode="In" />
-        </Function>
-        <Function Name="spPerson_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="PersonId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="spPerson_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="spPerson_GetLastName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="PersonLastName" Type="nvarchar" Mode="In" />
-          <Parameter Name="EMBG" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="spPerson_InsertAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Street" Type="nvarchar" Mode="In" />
-          <Parameter Name="Number" Type="int" Mode="In" />
-          <Parameter Name="PostalCode" Type="int" Mode="In" />
-          <Parameter Name="City" Type="nvarchar" Mode="In" />
-          <Parameter Name="State" Type="nvarchar" Mode="In" />
-          <Parameter Name="Provice" Type="nvarchar" Mode="In" />
-          <Parameter Name="Country" Type="nvarchar" Mode="In" />
-          <Parameter Name="IsActive" Type="int" Mode="In" />
-          <Parameter Name="IsDeleted" Type="int" Mode="In" />
-        </Function>
-        <Function Name="spPerson_InsertPerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
-          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
-          <Parameter Name="MiddleName" Type="nvarchar" Mode="In" />
-          <Parameter Name="IdNumber" Type="int" Mode="In" />
-          <Parameter Name="EmailAddress" Type="nvarchar" Mode="In" />
-          <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
-          <Parameter Name="AddressId" Type="int" Mode="In" />
-          <Parameter Name="IsActive" Type="int" Mode="In" />
-          <Parameter Name="IsDeleted" Type="int" Mode="In" />
-          <Parameter Name="Gender" Type="int" Mode="In" />
-          <Parameter Name="EMBG" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="spPerson_UpdateCity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="City" Type="nvarchar" Mode="In" />
-          <Parameter Name="AddressId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="spPerson_UpdateEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Email" Type="nvarchar" Mode="In" />
-          <Parameter Name="IdNumber" Type="int" Mode="In" />
-        </Function>
-        <Function Name="spPerson_UpdatePerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="PersonId" Type="int" Mode="In" />
-          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
-          <Parameter Name="MiddleName" Type="nvarchar" Mode="In" />
-          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
-          <Parameter Name="IdNumber" Type="int" Mode="In" />
-          <Parameter Name="EmailAddress" Type="nvarchar" Mode="In" />
-          <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
-          <Parameter Name="AddressId" Type="int" Mode="In" />
-          <Parameter Name="Active" Type="int" Mode="In" />
-          <Parameter Name="Deleted" Type="int" Mode="In" />
-          <Parameter Name="Gender" Type="int" Mode="In" />
-          <Parameter Name="EMBG" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="spPersonAddress_InnerJoin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Agreement" EntityType="Self.Agreement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InvoiceItem" EntityType="Self.InvoiceItem" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Notice" EntityType="Self.Notice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notices" EntityType="Self.Notices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Offer" EntityType="Self.Offer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Agreement_Invoice" Association="Self.FK_Agreement_Invoice">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="Agreement" EntitySet="Agreement" />
+          </AssociationSet>
           <AssociationSet Name="FK_Agreement_Offer" Association="Self.FK_Agreement_Offer">
             <End Role="Offer" EntitySet="Offer" />
             <End Role="Agreement" EntitySet="Agreement" />
@@ -363,13 +336,33 @@
             <End Role="Agreement" EntitySet="Agreement" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Organization" Association="Self.FK_Invoice_Organization">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Person" Association="Self.FK_Invoice_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
           <AssociationSet Name="FK_InvoiceItem_Invoice" Association="Self.FK_InvoiceItem_Invoice">
             <End Role="Invoice" EntitySet="Invoice" />
             <End Role="InvoiceItem" EntitySet="InvoiceItem" />
           </AssociationSet>
-          <AssociationSet Name="FK_Notice_Invoice" Association="Self.FK_Notice_Invoice">
+          <AssociationSet Name="FK_Notices_Invoice" Association="Self.FK_Notices_Invoice">
             <End Role="Invoice" EntitySet="Invoice" />
-            <End Role="Notice" EntitySet="Notice" />
+            <End Role="Notices" EntitySet="Notices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notices_Organization" Association="Self.FK_Notices_Organization">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Notices" EntitySet="Notices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notices_Person" Association="Self.FK_Notices_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Notices" EntitySet="Notices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offer_InvoiceItem" Association="Self.FK_Offer_InvoiceItem">
+            <End Role="InvoiceItem" EntitySet="InvoiceItem" />
+            <End Role="Offer" EntitySet="Offer" />
           </AssociationSet>
           <AssociationSet Name="FK_Offer_Organization" Association="Self.FK_Offer_Organization">
             <End Role="Organization" EntitySet="Organization" />
@@ -383,37 +376,12 @@
             <End Role="Address" EntitySet="Address" />
             <End Role="Organization" EntitySet="Organization" />
           </AssociationSet>
-          <AssociationSet Name="FK_Person_Address" Association="Self.FK_Person_Address">
-            <End Role="Address" EntitySet="Address" />
-            <End Role="Person" EntitySet="Person" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="InvoiceItem">
-          <Key>
-            <PropertyRef Name="InvoiceItemId" />
-          </Key>
-          <Property Name="InvoiceItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ItemName" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
-          <Property Name="InvoiceId" Type="Int32" Nullable="false" />
-          <Property Name="UnitPrice" Type="Double" />
-          <Property Name="Vat" Type="Int32" />
-          <Property Name="VatUnitPrice" Type="Double" />
-          <Property Name="Quantity" Type="Double" />
-          <Property Name="PriceIncludingVat" Type="Double" />
-          <Property Name="PriceExcludingVat" Type="Double" />
-          <Property Name="VatAmount" Type="Double" />
-          <Property Name="DiscountAmount" Type="Double" />
-          <Property Name="DiscountPercentage" Type="Double" />
-          <Property Name="IsActive" Type="Int32" Nullable="false" />
-          <Property Name="IsDeleted" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Invoice" Relationship="Model.FK_InvoiceItem_Invoice" FromRole="InvoiceItem" ToRole="Invoice" />
-        </EntityType>
         <EntityContainer Name="DMSEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="InvoiceItems" EntityType="Self.InvoiceItem" />
           <FunctionImport Name="spAddress_Delete">
           <Parameter Name="AddressId" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -509,45 +477,66 @@
           </FunctionImport>
           <FunctionImport Name="spPersonAddress_InnerJoin" ReturnType="Collection(Model.spPersonAddress_InnerJoin_Result)" />
           <EntitySet Name="Addresses" EntityType="Model.Address" />
-          <EntitySet Name="People" EntityType="Model.Person" />
-          <AssociationSet Name="FK_Person_Address" Association="Model.FK_Person_Address">
-            <End Role="Address" EntitySet="Addresses" />
-            <End Role="Person" EntitySet="People" />
-          </AssociationSet>
           <EntitySet Name="Agreements" EntityType="Model.Agreement" />
           <EntitySet Name="Invoices" EntityType="Model.Invoice" />
+          <EntitySet Name="InvoiceItems" EntityType="Model.InvoiceItem" />
+          <EntitySet Name="Notices" EntityType="Model.Notice" />
+          <EntitySet Name="Offers" EntityType="Model.Offer" />
+          <EntitySet Name="Organizations" EntityType="Model.Organization" />
+          <EntitySet Name="People" EntityType="Model.Person" />
+          <AssociationSet Name="FK_Organization_Address" Association="Model.FK_Organization_Address">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agreement_Invoice" Association="Model.FK_Agreement_Invoice">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="Agreement" EntitySet="Agreements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agreement_Offer" Association="Model.FK_Agreement_Offer">
+            <End Role="Offer" EntitySet="Offers" />
+            <End Role="Agreement" EntitySet="Agreements" />
+          </AssociationSet>
           <AssociationSet Name="FK_Invoice_Agreement" Association="Model.FK_Invoice_Agreement">
             <End Role="Agreement" EntitySet="Agreements" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Organization" Association="Model.FK_Invoice_Organization">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Person" Association="Model.FK_Invoice_Person">
+            <End Role="Person" EntitySet="People" />
             <End Role="Invoice" EntitySet="Invoices" />
           </AssociationSet>
           <AssociationSet Name="FK_InvoiceItem_Invoice" Association="Model.FK_InvoiceItem_Invoice">
             <End Role="Invoice" EntitySet="Invoices" />
             <End Role="InvoiceItem" EntitySet="InvoiceItems" />
           </AssociationSet>
-          <EntitySet Name="Notices" EntityType="Model.Notice" />
-          <AssociationSet Name="FK_Notice_Invoice" Association="Model.FK_Notice_Invoice">
+          <AssociationSet Name="FK_Notices_Invoice" Association="Model.FK_Notices_Invoice">
             <End Role="Invoice" EntitySet="Invoices" />
             <End Role="Notice" EntitySet="Notices" />
           </AssociationSet>
-          <EntitySet Name="Offers" EntityType="Model.Offer" />
-          <AssociationSet Name="FK_Agreement_Offer" Association="Model.FK_Agreement_Offer">
-            <End Role="Offer" EntitySet="Offers" />
-            <End Role="Agreement" EntitySet="Agreements" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Offer_Person" Association="Model.FK_Offer_Person">
-            <End Role="Person" EntitySet="People" />
+          <AssociationSet Name="FK_Offer_InvoiceItem" Association="Model.FK_Offer_InvoiceItem">
+            <End Role="InvoiceItem" EntitySet="InvoiceItems" />
             <End Role="Offer" EntitySet="Offers" />
           </AssociationSet>
-          <EntitySet Name="Organizations" EntityType="Model.Organization" />
-          <AssociationSet Name="FK_Organization_Address" Association="Model.FK_Organization_Address">
-            <End Role="Address" EntitySet="Addresses" />
+          <AssociationSet Name="FK_Notices_Organization" Association="Model.FK_Notices_Organization">
             <End Role="Organization" EntitySet="Organizations" />
+            <End Role="Notice" EntitySet="Notices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notices_Person" Association="Model.FK_Notices_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Notice" EntitySet="Notices" />
           </AssociationSet>
           <AssociationSet Name="FK_Offer_Organization" Association="Model.FK_Offer_Organization">
             <End Role="Organization" EntitySet="Organizations" />
             <End Role="Offer" EntitySet="Offers" />
           </AssociationSet>
-        </EntityContainer>
+          <AssociationSet Name="FK_Offer_Person" Association="Model.FK_Offer_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Offer" EntitySet="Offers" />
+          </AssociationSet>
+          </EntityContainer>
         <ComplexType Name="spAddress_GetAddress_Result">
           <Property Type="Int32" Name="AddressId" Nullable="false" />
           <Property Type="String" Name="Street" Nullable="false" MaxLength="64" />
@@ -610,66 +599,37 @@
             <PropertyRef Name="AddressId" />
           </Key>
           <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Street" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="Number" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="State" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="Province" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Street" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Number" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="People" Relationship="Model.FK_Person_Address" FromRole="Address" ToRole="Person" />
           <NavigationProperty Name="Organizations" Relationship="Model.FK_Organization_Address" FromRole="Address" ToRole="Organization" />
         </EntityType>
-        <EntityType Name="Person">
-          <Key>
-            <PropertyRef Name="PersonId" />
-          </Key>
-          <Property Name="PersonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PersonFirstName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="PersonMiddleName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="PersonLastName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="IdNumber" Type="Int32" />
-          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="AddressId" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="Gender" Type="Int32" />
-          <Property Name="EMBG" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Address" Relationship="Model.FK_Person_Address" FromRole="Person" ToRole="Address" />
-          <NavigationProperty Name="Offers" Relationship="Model.FK_Offer_Person" FromRole="Person" ToRole="Offer" />
-        </EntityType>
-        <Association Name="FK_Person_Address">
-          <End Type="Model.Address" Role="Address" Multiplicity="0..1" />
-          <End Type="Model.Person" Role="Person" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Address">
-              <PropertyRef Name="AddressId" />
-            </Principal>
-            <Dependent Role="Person">
-              <PropertyRef Name="AddressId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Agreement">
           <Key>
             <PropertyRef Name="AgreementId" />
           </Key>
-          <Property Name="AgreementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgreementId" Type="Int32" Nullable="false" />
           <Property Name="OfferId" Type="Int32" Nullable="false" />
-          <Property Name="AgreementNumber" Type="Int32" />
-          <Property Name="CreateDate" Type="DateTime" Precision="0" />
-          <Property Name="StartDate" Type="DateTime" Precision="0" />
-          <Property Name="EndDate" Type="DateTime" Precision="0" />
-          <Property Name="Title" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
-          <Property Name="Subject" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="Body" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="AgreementNumber" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Invoices" Relationship="Model.FK_Invoice_Agreement" FromRole="Agreement" ToRole="Invoice" />
+          <NavigationProperty Name="Invoice" Relationship="Model.FK_Agreement_Invoice" FromRole="Agreement" ToRole="Invoice" />
           <NavigationProperty Name="Offer" Relationship="Model.FK_Agreement_Offer" FromRole="Agreement" ToRole="Offer" />
+          <NavigationProperty Name="Invoices" Relationship="Model.FK_Invoice_Agreement" FromRole="Agreement" ToRole="Invoice" />
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
@@ -677,30 +637,179 @@
           </Key>
           <Property Name="InvoiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AgreementId" Type="Int32" Nullable="false" />
-          <Property Name="InvoiceNumber" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceNumber" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="PersonId" Type="Int32" Nullable="false" />
           <Property Name="OrganizationId" Type="Int32" Nullable="false" />
-          <Property Name="CreateDate" Type="DateTime" Precision="0" />
-          <Property Name="InvoiceDate" Type="DateTime" Precision="0" />
-          <Property Name="DueDays" Type="Int32" />
-          <Property Name="DueDate" Type="DateTime" Precision="0" />
-          <Property Name="Amount" Type="Double" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InvoiceDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DueDays" Type="Int32" Nullable="false" />
+          <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
           <Property Name="DiscountAmount" Type="Double" />
           <Property Name="DiscountPercent" Type="Int32" />
-          <Property Name="Vat" Type="Int32" />
-          <Property Name="VatAmount" Type="Double" />
-          <Property Name="TotalAmount" Type="Double" />
-          <Property Name="Currency" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
-          <Property Name="CurrencyRate" Type="Double" />
-          <Property Name="Disclaimer" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Vat" Type="Int32" Nullable="false" />
+          <Property Name="VatAmount" Type="Double" Nullable="false" />
+          <Property Name="TotalAmount" Type="Double" Nullable="false" />
+          <Property Name="Currency" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CurrencyRate" Type="Double" Nullable="false" />
+          <Property Name="Disclaimer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsPaid" Type="Boolean" Nullable="false" />
-          <Property Name="PaidDate" Type="DateTime" Precision="0" />
+          <Property Name="PaidDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Agreements" Relationship="Model.FK_Agreement_Invoice" FromRole="Invoice" ToRole="Agreement" />
           <NavigationProperty Name="Agreement" Relationship="Model.FK_Invoice_Agreement" FromRole="Invoice" ToRole="Agreement" />
+          <NavigationProperty Name="Organization" Relationship="Model.FK_Invoice_Organization" FromRole="Invoice" ToRole="Organization" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Invoice_Person" FromRole="Invoice" ToRole="Person" />
           <NavigationProperty Name="InvoiceItems" Relationship="Model.FK_InvoiceItem_Invoice" FromRole="Invoice" ToRole="InvoiceItem" />
-          <NavigationProperty Name="Notices" Relationship="Model.FK_Notice_Invoice" FromRole="Invoice" ToRole="Notice" />
+          <NavigationProperty Name="Notices" Relationship="Model.FK_Notices_Invoice" FromRole="Invoice" ToRole="Notice" />
         </EntityType>
+        <EntityType Name="InvoiceItem">
+          <Key>
+            <PropertyRef Name="InvoiceItemId" />
+          </Key>
+          <Property Name="InvoiceItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+          <Property Name="UnitPrice" Type="Double" Nullable="false" />
+          <Property Name="Vat" Type="Int32" Nullable="false" />
+          <Property Name="VatUnitPrice" Type="Double" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="PriceIncludingVat" Type="Double" Nullable="false" />
+          <Property Name="PriceExcludingVat" Type="Double" Nullable="false" />
+          <Property Name="VatAmount" Type="Double" Nullable="false" />
+          <Property Name="DiscountAmount" Type="Double" />
+          <Property Name="DiscountPersentage" Type="Double" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Invoice" Relationship="Model.FK_InvoiceItem_Invoice" FromRole="InvoiceItem" ToRole="Invoice" />
+          <NavigationProperty Name="Offers" Relationship="Model.FK_Offer_InvoiceItem" FromRole="InvoiceItem" ToRole="Offer" />
+        </EntityType>
+        <EntityType Name="Notice">
+          <Key>
+            <PropertyRef Name="NoticeId" />
+          </Key>
+          <Property Name="NoticeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoticeText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoticeNumber" Type="Int32" Nullable="false" />
+          <Property Name="NoticeDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+          <Property Name="PersonId" Type="Int32" />
+          <Property Name="OrganizationId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Invoice" Relationship="Model.FK_Notices_Invoice" FromRole="Notice" ToRole="Invoice" />
+          <NavigationProperty Name="Organization" Relationship="Model.FK_Notices_Organization" FromRole="Notice" ToRole="Organization" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Notices_Person" FromRole="Notice" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Offer">
+          <Key>
+            <PropertyRef Name="OfferId" />
+          </Key>
+          <Property Name="OfferId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationId" Type="Int32" />
+          <Property Name="PersonId" Type="Int32" />
+          <Property Name="InvoiceItemId" Type="Int32" Nullable="false" />
+          <Property Name="OfferNumber" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="DiscountPercent" Type="Double" />
+          <Property Name="DiscountAmount" Type="Double" />
+          <Property Name="OfferAmount" Type="Double" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ValidityDays" Type="Int32" Nullable="false" />
+          <Property Name="ValidityDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Disclaimer" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Currency" Type="String" Nullable="false" MaxLength="320" FixedLength="false" Unicode="true" />
+          <Property Name="CurrencyRate" Type="Double" Nullable="false" />
+          <Property Name="Vat" Type="Int32" Nullable="false" />
+          <Property Name="VatAmount" Type="Double" Nullable="false" />
+          <Property Name="ReasonForDeclining" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="IsAccepted" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Agreements" Relationship="Model.FK_Agreement_Offer" FromRole="Offer" ToRole="Agreement" />
+          <NavigationProperty Name="InvoiceItem" Relationship="Model.FK_Offer_InvoiceItem" FromRole="Offer" ToRole="InvoiceItem" />
+          <NavigationProperty Name="Organization" Relationship="Model.FK_Offer_Organization" FromRole="Offer" ToRole="Organization" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Offer_Person" FromRole="Offer" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="OrganizationId" />
+          </Key>
+          <Property Name="OrganizationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VatNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="AddressId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="Model.FK_Organization_Address" FromRole="Organization" ToRole="Address" />
+          <NavigationProperty Name="Invoices" Relationship="Model.FK_Invoice_Organization" FromRole="Organization" ToRole="Invoice" />
+          <NavigationProperty Name="Notices" Relationship="Model.FK_Notices_Organization" FromRole="Organization" ToRole="Notice" />
+          <NavigationProperty Name="Offers" Relationship="Model.FK_Offer_Organization" FromRole="Organization" ToRole="Offer" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonFirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PersonLastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PersonMiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Gender" Type="Int32" Nullable="false" />
+          <Property Name="EMBG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Invoices" Relationship="Model.FK_Invoice_Person" FromRole="Person" ToRole="Invoice" />
+          <NavigationProperty Name="Notices" Relationship="Model.FK_Notices_Person" FromRole="Person" ToRole="Notice" />
+          <NavigationProperty Name="Offers" Relationship="Model.FK_Offer_Person" FromRole="Person" ToRole="Offer" />
+        </EntityType>
+        <Association Name="FK_Organization_Address">
+          <End Type="Model.Address" Role="Address" Multiplicity="1" />
+          <End Type="Model.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agreement_Invoice">
+          <End Type="Model.Invoice" Role="Invoice" Multiplicity="1" />
+          <End Type="Model.Agreement" Role="Agreement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceId" />
+            </Principal>
+            <Dependent Role="Agreement">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agreement_Offer">
+          <End Type="Model.Offer" Role="Offer" Multiplicity="1" />
+          <End Type="Model.Agreement" Role="Agreement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offer">
+              <PropertyRef Name="OfferId" />
+            </Principal>
+            <Dependent Role="Agreement">
+              <PropertyRef Name="OfferId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Invoice_Agreement">
           <End Type="Model.Agreement" Role="Agreement" Multiplicity="1" />
           <End Type="Model.Invoice" Role="Invoice" Multiplicity="*" />
@@ -710,6 +819,30 @@
             </Principal>
             <Dependent Role="Invoice">
               <PropertyRef Name="AgreementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Organization">
+          <End Type="Model.Organization" Role="Organization" Multiplicity="1" />
+          <End Type="Model.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="OrganizationId" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Person">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="PersonId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -725,22 +858,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Notice">
-          <Key>
-            <PropertyRef Name="NoticeId" />
-          </Key>
-          <Property Name="NoticeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NoticeText" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="NoticeNumber" Type="Int32" />
-          <Property Name="NoticeDate" Type="DateTime" Precision="0" />
-          <Property Name="InvoiceId" Type="Int32" Nullable="false" />
-          <Property Name="PersonId" Type="Int32" Nullable="false" />
-          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Invoice" Relationship="Model.FK_Notice_Invoice" FromRole="Notice" ToRole="Invoice" />
-        </EntityType>
-        <Association Name="FK_Notice_Invoice">
+        <Association Name="FK_Notices_Invoice">
           <End Type="Model.Invoice" Role="Invoice" Multiplicity="1" />
           <End Type="Model.Notice" Role="Notice" Multiplicity="*" />
           <ReferentialConstraint>
@@ -752,92 +870,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Offer">
-          <Key>
-            <PropertyRef Name="OfferId" />
-          </Key>
-          <Property Name="OfferId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
-          <Property Name="PersonId" Type="Int32" Nullable="false" />
-          <Property Name="OfferNumber" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
-          <Property Name="Amount" Type="Double" Nullable="false" />
-          <Property Name="DiscountPercent" Type="Double" />
-          <Property Name="DiscountAmount" Type="Double" />
-          <Property Name="OfferAmount" Type="Double" />
-          <Property Name="CreateDate" Type="DateTime" Precision="0" />
-          <Property Name="ValidityDays" Type="Int32" />
-          <Property Name="ValidityDate" Type="DateTime" Precision="0" />
-          <Property Name="Disclaimer" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
-          <Property Name="Subject" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
-          <Property Name="Body" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
-          <Property Name="Currency" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
-          <Property Name="CurrencyRate" Type="Double" />
-          <Property Name="Vat" Type="Int32" />
-          <Property Name="VatAmount" Type="Double" />
-          <Property Name="ReasonForDeclining" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="IsAccepted" Type="Boolean" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Agreements" Relationship="Model.FK_Agreement_Offer" FromRole="Offer" ToRole="Agreement" />
-          <NavigationProperty Name="Person" Relationship="Model.FK_Offer_Person" FromRole="Offer" ToRole="Person" />
-          <NavigationProperty Name="Organization" Relationship="Model.FK_Offer_Organization" FromRole="Offer" ToRole="Organization" />
-        </EntityType>
-        <Association Name="FK_Agreement_Offer">
-          <End Type="Model.Offer" Role="Offer" Multiplicity="1" />
-          <End Type="Model.Agreement" Role="Agreement" Multiplicity="*" />
+        <Association Name="FK_Offer_InvoiceItem">
+          <End Type="Model.InvoiceItem" Role="InvoiceItem" Multiplicity="1" />
+          <End Type="Model.Offer" Role="Offer" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Offer">
-              <PropertyRef Name="OfferId" />
+            <Principal Role="InvoiceItem">
+              <PropertyRef Name="InvoiceItemId" />
             </Principal>
-            <Dependent Role="Agreement">
-              <PropertyRef Name="OfferId" />
+            <Dependent Role="Offer">
+              <PropertyRef Name="InvoiceItemId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Offer_Person">
-          <End Type="Model.Person" Role="Person" Multiplicity="1" />
-          <End Type="Model.Offer" Role="Offer" Multiplicity="*" />
+        <Association Name="FK_Notices_Organization">
+          <End Type="Model.Organization" Role="Organization" Multiplicity="0..1" />
+          <End Type="Model.Notice" Role="Notice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="OrganizationId" />
+            </Principal>
+            <Dependent Role="Notice">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notices_Person">
+          <End Type="Model.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="Model.Notice" Role="Notice" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
               <PropertyRef Name="PersonId" />
             </Principal>
-            <Dependent Role="Offer">
+            <Dependent Role="Notice">
               <PropertyRef Name="PersonId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Organization">
-          <Key>
-            <PropertyRef Name="OrganizationId" />
-          </Key>
-          <Property Name="OrganizationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyId" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="VatNumber" Type="String" Nullable="false" MaxLength="32" FixedLength="true" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
-          <Property Name="Type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="AddressId" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Address" Relationship="Model.FK_Organization_Address" FromRole="Organization" ToRole="Address" />
-          <NavigationProperty Name="Offers" Relationship="Model.FK_Offer_Organization" FromRole="Organization" ToRole="Offer" />
-        </EntityType>
-        <Association Name="FK_Organization_Address">
-          <End Type="Model.Address" Role="Address" Multiplicity="0..1" />
-          <End Type="Model.Organization" Role="Organization" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Address">
-              <PropertyRef Name="AddressId" />
-            </Principal>
-            <Dependent Role="Organization">
-              <PropertyRef Name="AddressId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Offer_Organization">
-          <End Type="Model.Organization" Role="Organization" Multiplicity="1" />
+          <End Type="Model.Organization" Role="Organization" Multiplicity="0..1" />
           <End Type="Model.Offer" Role="Offer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Organization">
@@ -848,119 +918,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_Offer_Person">
+          <End Type="Model.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="Model.Offer" Role="Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Offer">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="DMSEntities">
-          <EntitySetMapping Name="InvoiceItems">
-            <EntityTypeMapping TypeName="Model.InvoiceItem">
-              <MappingFragment StoreEntitySet="InvoiceItem">
-                <ScalarProperty Name="InvoiceItemId" ColumnName="InvoiceItemId" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
-                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-                <ScalarProperty Name="Vat" ColumnName="Vat" />
-                <ScalarProperty Name="VatUnitPrice" ColumnName="VatUnitPrice" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="PriceIncludingVat" ColumnName="PriceIncludingVat" />
-                <ScalarProperty Name="PriceExcludingVat" ColumnName="PriceExcludingVat" />
-                <ScalarProperty Name="VatAmount" ColumnName="VatAmount" />
-                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
-                <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="spAddress_Delete" FunctionName="Model.Store.spAddress_Delete" />
-          <FunctionImportMapping FunctionImportName="spAddress_GetAddress" FunctionName="Model.Store.spAddress_GetAddress">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.spAddress_GetAddress_Result">
-                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
-                <ScalarProperty Name="Street" ColumnName="Street" />
-                <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Province" ColumnName="Province" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spAddress_Update" FunctionName="Model.Store.spAddress_Update" />
-          <FunctionImportMapping FunctionImportName="spOrganization_Delete" FunctionName="Model.Store.spOrganization_Delete" />
-          <FunctionImportMapping FunctionImportName="spOrganization_GetOrganization" FunctionName="Model.Store.spOrganization_GetOrganization">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.spOrganization_GetOrganization_Result">
-                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
-                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
-                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
-                <ScalarProperty Name="VatNumber" ColumnName="VatNumber" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spOrganization_UpdateOrganization" FunctionName="Model.Store.spOrganization_UpdateOrganization" />
-          <FunctionImportMapping FunctionImportName="spPerson_Delete" FunctionName="Model.Store.spPerson_Delete" />
-          <FunctionImportMapping FunctionImportName="spPerson_GetAll" FunctionName="Model.Store.spPerson_GetAll">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.spPerson_GetAll_Result">
-                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
-                <ScalarProperty Name="PersonFirstName" ColumnName="PersonFirstName" />
-                <ScalarProperty Name="PersonMiddleName" ColumnName="PersonMiddleName" />
-                <ScalarProperty Name="PersonLastName" ColumnName="PersonLastName" />
-                <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="EMBG" ColumnName="EMBG" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spPerson_GetLastName" FunctionName="Model.Store.spPerson_GetLastName">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.spPerson_GetLastName_Result">
-                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
-                <ScalarProperty Name="PersonFirstName" ColumnName="PersonFirstName" />
-                <ScalarProperty Name="PersonMiddleName" ColumnName="PersonMiddleName" />
-                <ScalarProperty Name="PersonLastName" ColumnName="PersonLastName" />
-                <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="EMBG" ColumnName="EMBG" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spPerson_InsertAddress" FunctionName="Model.Store.spPerson_InsertAddress" />
-          <FunctionImportMapping FunctionImportName="spPerson_InsertPerson" FunctionName="Model.Store.spPerson_InsertPerson" />
-          <FunctionImportMapping FunctionImportName="spPerson_UpdateCity" FunctionName="Model.Store.spPerson_UpdateCity" />
-          <FunctionImportMapping FunctionImportName="spPerson_UpdateEmail" FunctionName="Model.Store.spPerson_UpdateEmail" />
-          <FunctionImportMapping FunctionImportName="spPerson_UpdatePerson" FunctionName="Model.Store.spPerson_UpdatePerson" />
-          <FunctionImportMapping FunctionImportName="spPersonAddress_InnerJoin" FunctionName="Model.Store.spPersonAddress_InnerJoin">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.spPersonAddress_InnerJoin_Result">
-                <ScalarProperty Name="PersonFirstName" ColumnName="PersonFirstName" />
-                <ScalarProperty Name="City" ColumnName="City" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="Addresses">
             <EntityTypeMapping TypeName="Model.Address">
               <MappingFragment StoreEntitySet="Address">
@@ -977,24 +952,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="People">
-            <EntityTypeMapping TypeName="Model.Person">
-              <MappingFragment StoreEntitySet="Person">
-                <ScalarProperty Name="EMBG" ColumnName="EMBG" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
-                <ScalarProperty Name="PersonLastName" ColumnName="PersonLastName" />
-                <ScalarProperty Name="PersonMiddleName" ColumnName="PersonMiddleName" />
-                <ScalarProperty Name="PersonFirstName" ColumnName="PersonFirstName" />
-                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Agreements">
             <EntityTypeMapping TypeName="Model.Agreement">
               <MappingFragment StoreEntitySet="Agreement">
@@ -1005,6 +962,8 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="AgreementNumber" ColumnName="AgreementNumber" />
                 <ScalarProperty Name="OfferId" ColumnName="OfferId" />
@@ -1040,9 +999,29 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceItems">
+            <EntityTypeMapping TypeName="Model.InvoiceItem">
+              <MappingFragment StoreEntitySet="InvoiceItem">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DiscountPersentage" ColumnName="DiscountPersentage" />
+                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+                <ScalarProperty Name="VatAmount" ColumnName="VatAmount" />
+                <ScalarProperty Name="PriceExcludingVat" ColumnName="PriceExcludingVat" />
+                <ScalarProperty Name="PriceIncludingVat" ColumnName="PriceIncludingVat" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="VatUnitPrice" ColumnName="VatUnitPrice" />
+                <ScalarProperty Name="Vat" ColumnName="Vat" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="InvoiceItemId" ColumnName="InvoiceItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Notices">
             <EntityTypeMapping TypeName="Model.Notice">
-              <MappingFragment StoreEntitySet="Notice">
+              <MappingFragment StoreEntitySet="Notices">
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
@@ -1077,6 +1056,7 @@
                 <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="OfferNumber" ColumnName="OfferNumber" />
+                <ScalarProperty Name="InvoiceItemId" ColumnName="InvoiceItemId" />
                 <ScalarProperty Name="PersonId" ColumnName="PersonId" />
                 <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
                 <ScalarProperty Name="OfferId" ColumnName="OfferId" />
@@ -1097,6 +1077,24 @@
                 <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
                 <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
                 <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="Model.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="EMBG" ColumnName="EMBG" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PersonMiddleName" ColumnName="PersonMiddleName" />
+                <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+                <ScalarProperty Name="PersonLastName" ColumnName="PersonLastName" />
+                <ScalarProperty Name="PersonFirstName" ColumnName="PersonFirstName" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
