@@ -1,0 +1,103 @@
+﻿@model IEnumerable<DAL_EF.Organization>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<br />
+<h2>Index</h2>
+
+<p class="btn btn-info">
+    @Html.ActionLink("Create New", "Create")
+</p>
+<br />
+<br />
+<form method="get" asp-action="Index">
+    <p>
+        <input type="search" placeholder="Enter Address City or Number..." value="@ViewData["GetAddressDetails"]" name="Addrsearch" style="width:500px" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+        @*<a asp-action="Index" class="btn btn-success pull-left">Get All Addresses</a>*@
+    </p>
+</form>
+<table class="table table-bordered">
+    <tr style="background-color:darkgoldenrod">
+        <th>
+            @Html.DisplayNameFor(model => model.OrganizationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VatNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address.Street)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrganizationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VatNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDeleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address.Street)
+        </td>
+        <td class="btn btn-warning" width="44">
+            @Html.ActionLink("Edit", "Edit", new { id=item.OrganizationId }) 
+            </td>
+        <td class="btn btn-success" width="58">
+            @Html.ActionLink("Details", "Details", new { id=item.OrganizationId }) 
+            </td>
+        <td class="btn btn-danger" width="55">
+            @Html.ActionLink("Delete", "Delete", new { id=item.OrganizationId })
+        </td>
+    </tr>
+}
+
+</table>

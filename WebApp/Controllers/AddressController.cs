@@ -29,7 +29,10 @@ namespace WebApp.Controllers
                 TempData["SuccessMessage"] = "Address with id " + addr.AddressId + " was created successfully!";
                 return RedirectToAction("Index", "Address");
             }
-            return View("Index");
+            else
+            {
+                return HttpNotFound();
+            }
         }
         #endregion
         //Index

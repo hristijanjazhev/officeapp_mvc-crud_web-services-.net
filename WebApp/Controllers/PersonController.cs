@@ -32,13 +32,6 @@ namespace WebApp.Controllers
             }
             return View("Index");
         }
-
-
-
-
-
-
-
         #endregion
         // GET: Persons
         #region ListOfPersons
