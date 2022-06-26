@@ -4,7 +4,9 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<br />
+<br />
+<br />
 <h2>Details</h2>
 
 <div>
@@ -28,11 +30,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PostalCode)
+            @Html.DisplayNameFor(model => model.PostCode)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PostalCode)
+            @Html.DisplayFor(model => model.PostCode)
         </dd>
 
         <dt>
@@ -85,9 +87,10 @@
 
     </dl>
 </div>
-<p class="btn btn-warning">
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AddressId })
- </p>
+
+<center><p class="btn btn-warning btn btn-block">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AddressId }) 
+    </p></center><br />
 <p class="btn btn-info">
     @Html.ActionLink("Back to List", "Index")
 </p>

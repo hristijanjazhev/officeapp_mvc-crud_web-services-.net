@@ -1,72 +1,71 @@
-﻿using DAL_EF;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL_EF;
+using DataAccessLayer;
 
-namespace BLL.Models
+namespace BusinessLogicLayer
 {
     public class AddressBLL
     {
-        readonly AddressDAL addressDAL = new AddressDAL();
+        AddressDAL addressDAL = new AddressDAL();
 
-        #region CREATE
+        public IEnumerable<Address> GetAll()
+        {
+            return addressDAL.GetAll();
+        }
+
+        public IEnumerable<Address> GetAllActive()
+        {
+            return addressDAL.GetAll().Where(p => p.IsActive == true && p.IsDeleted == false);
+        }
+
+        public IEnumerable<Address> GetAllNotActive()
+        {
+            return addressDAL.GetAll().Where(p => p.IsActive == false && p.IsDeleted == false);
+        }
+
+        public IEnumerable<Address> GetAllDeleted()
+        {
+            return addressDAL.GetAll().Where(p => p.IsActive == false && p.IsDeleted == true);
+        }
+
+        public Address GetById(Int32 id)
+        {
+            return addressDAL.GetById(id);
+        }
+
+
         public void Insert(Address address)
         {
             addressDAL.Insert(address);
         }
 
-        public int InsertReturnId(Address address)
+        public Int32 InsertReturnId(Address address)
         {
             return addressDAL.InsertReturnId(address);
         }
-        #endregion
 
-        #region RETRIEVE
-        public List<Address> GetAll()
-        {
-            return addressDAL.GetAll().ToList();
-        }
-
-        public Address GetById(int id)
-        {
-            return addressDAL.GetById(id);
-        }
-
-        public List<Address> GettAllActive()
-        {
-            return addressDAL.GetAllActive().ToList();
-        }
-
-        public List<Address> GellAllNotActive()
-        {
-            return addressDAL.GetAllNotActive().ToList();
-        }
-
-        public List<Address> GetAllDeleted()
-        {
-            return addressDAL.GetAllDeleted().ToList();
-        }
-        #endregion
-
-        #region UPDATE
         public void Update(Address address)
         {
             addressDAL.Update(address);
         }
-        #endregion
 
-        #region DELETE
         public void Delete(Address address)
         {
-            addressDAL.Delete(address);
+            address.IsActive = false;
+            address.IsDeleted = true;
+            addressDAL.Update(address);
+
         }
 
         public void DeletePermanently(Address address)
         {
             addressDAL.DeletePermanently(address);
+
         }
-        #endregion
     }
+
 }

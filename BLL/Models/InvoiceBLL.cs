@@ -10,54 +10,78 @@ namespace BLL.Models
 {
     public class InvoiceBLL
     {
-        readonly InvoiceDAL invoiceDAL = new InvoiceDAL();
+        InvoiceDAL invoiceDAL = new InvoiceDAL();
+        AgreementBLL agreementBLL = new AgreementBLL();
 
-        #region CREATE
+        public List<Invoice> GetAll()
+        {
+            return invoiceDAL.GetAll();
+        }
+
+        public Invoice GetById(Int32 id)
+        {
+            return invoiceDAL.GetById(id);
+        }
+
         public void Insert(Invoice invoice)
         {
             invoiceDAL.Insert(invoice);
         }
 
-        public int InsertReturnId(Invoice invoice)
+        public Int32 InsertReturnId(Invoice invoice)
         {
             return invoiceDAL.InsertReturnId(invoice);
         }
-        #endregion
 
-        #region RETRIEVE
-        public List<Invoice> GetAll()
-        {
-            return invoiceDAL.GetAll().ToList();
-        }
-
-        public Invoice GetById(int id)
-        {
-            return invoiceDAL.GetById(id);
-        }
-
-        public List<Invoice> GetAllActive()
-        {
-            return invoiceDAL.GetAllActive().ToList();
-        }
-        #endregion
-
-        #region UPDATE
         public void Update(Invoice invoice)
         {
             invoiceDAL.Update(invoice);
         }
-        #endregion
 
-        #region DELETE
         public void Delete(Invoice invoice)
         {
-            invoiceDAL.Delete(invoice);
+            invoice.IsActive = false;
+            invoice.IsDeleted = true;
+            invoiceDAL.Update(invoice);
         }
 
         public void DeletePermanently(Invoice invoice)
         {
+            //List<Agreement> relatedAgreementsForDelete = agreementBLL.
+
             invoiceDAL.DeletePermanently(invoice);
+
+
+            //List<Offer> relatedOffersForDelete = offerBLL.GetAllOffersByOrganizationId(organization.OrganizationId);
+            //Address addressForDelete = addressBLL.GetById(organization.AddressId);
+            //organizationDAL.DeletePermanently(organization);
+            //addressBLL.DeletePermanently(addressForDelete);
         }
-        #endregion
+
+        public IEnumerable<Invoice> GetAllActive()
+        {
+            return invoiceDAL.GetAll().Where(p => p.IsActive == true && p.IsDeleted == false);
+        }
+
+        public IEnumerable<Invoice> GetAllNotActive()
+        {
+            return invoiceDAL.GetAll().Where(p => p.IsActive == false && p.IsDeleted == false);
+        }
+
+        public IEnumerable<Invoice> GetAllDeleted()
+        {
+            return invoiceDAL.GetAll().Where(p => p.IsActive == false && p.IsDeleted == true);
+        }
+
+        public Invoice GetByInvoiceNumber(string InvoiceNumber)
+        {
+            return invoiceDAL.GetAll().Where(p => p.InvoiceNumber == InvoiceNumber).FirstOrDefault();
+        }
+
+        public List<Invoice> GetAllInvoiceByAgreementId(int id)
+        {
+            return invoiceDAL.GetAll().Where(item => item.AgreementId == id).ToList();
+        }
+
     }
 }

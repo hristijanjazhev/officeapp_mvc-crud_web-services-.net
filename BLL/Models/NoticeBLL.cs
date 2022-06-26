@@ -12,52 +12,63 @@ namespace BLL.Models
     {
         readonly NoticeDAL noticeDAL = new NoticeDAL();
 
-        #region CREATE
+        public List<Notice> GetAll()
+        {
+            return noticeDAL.GetAll();
+        }
+
+        public Notice GetById(Int32 id)
+        {
+            return noticeDAL.GetById(id);
+        }
+
         public void Insert(Notice notice)
         {
             noticeDAL.Insert(notice);
         }
 
-        public int InsertReturnId(Notice notice)
+        public Int32 InsertReturnId(Notice notice)
         {
             return noticeDAL.InsertReturnId(notice);
         }
-        #endregion
 
-        #region RETRIEVE
-        public List<Notice> GetAll()
-        {
-            return noticeDAL.GetAll().ToList();
-        }
-
-        public Notice GetById(int id)
-        {
-            return noticeDAL.GetById(id);
-        }
-
-        public List<Notice> GetAllActive()
-        {
-            return noticeDAL.GetAllActive().ToList();
-        }
-        #endregion
-
-        #region UPDATE
         public void Update(Notice notice)
         {
             noticeDAL.Update(notice);
         }
-        #endregion
 
-        #region DELETE
         public void Delete(Notice notice)
         {
-            noticeDAL.Delete(notice);
+            notice.IsActive = false;
+            notice.IsDeleted = true;
+            noticeDAL.Update(notice);
         }
 
         public void DeletePermanently(Notice notice)
         {
             noticeDAL.DeletePermanently(notice);
+
         }
-        #endregion
+
+        public IEnumerable<Notice> GetAllActive()
+        {
+            return noticeDAL.GetAll().Where(p => p.IsActive == true && p.IsDeleted == false);
+        }
+
+        public IEnumerable<Notice> GetAllNotActive()
+        {
+            return noticeDAL.GetAll().Where(p => p.IsActive == false && p.IsDeleted == false);
+        }
+
+        public IEnumerable<Notice> GetAllDeleted()
+        {
+            return noticeDAL.GetAll().Where(p => p.IsActive == false && p.IsDeleted == true);
+        }
+
+        public Notice GetByInvoiceNumber(Int32 NoticeNumber)
+        {
+            return noticeDAL.GetAll().Where(p => p.NoticeNumber == NoticeNumber).FirstOrDefault();
+        }
+
     }
 }

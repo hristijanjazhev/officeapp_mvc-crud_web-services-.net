@@ -10,19 +10,31 @@ namespace DAL_EF.Models
     public class OfferDAL
     {
         readonly DMSEntities db = new DMSEntities();
+        public List<Offer> GetAll()
+        {
+            return db.Offers.ToList();
+        }
 
-        #region CREATE
+        public Offer GetById(int id)
+        {
+            return db.Offers.Where(p => p.OfferId == id).SingleOrDefault();
+        }
         public void Insert(Offer offer)
         {
             db.Offers.Add(offer);
+            db.SaveChanges();
+        }
+        public void Update(Offer offer)
+        {
+            _ = db.Entry(offer).State == System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
         }
 
-        public int InsertReturnId(Offer offer)
+        public Int32 InsertReturnId(Offer offer)
         {
-            int id = 0;
+            int id = Int32.MinValue;
             db.Offers.Add(offer);
             TransactionScope ts = new TransactionScope();
-
             try
             {
                 if (db.SaveChanges() > 0)
@@ -31,9 +43,10 @@ namespace DAL_EF.Models
                     ts.Complete();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new ArgumentException(e.Message, e.InnerException);
+
+                throw new ArgumentException(ex.Message, ex.InnerException);
             }
             finally
             {
@@ -42,56 +55,12 @@ namespace DAL_EF.Models
                     ((IDisposable)ts).Dispose();
                 }
             }
-
             return id;
         }
-        #endregion
-
-        #region RETRIEVE
-        public IQueryable<Offer> GetAll()
-        {
-            return db.Offers;
-        }
-
-        public Offer GetById(int id)
-        {
-            return db.Offers.Where(a => a.OfferId == id).SingleOrDefault();
-        }
-        public IQueryable<Offer> GetAllActive()
-        {
-            return db.Offers.Where(a => a.IsAccepted == true);
-        }
-
-        public IQueryable<Offer> GetAllNotActive()
-        {
-            return db.Offers.Where(a => a.IsAccepted == false);
-        }
-
-        public IQueryable<Offer> GetAllDeleted()
-        {
-            return db.Offers.Where(a => a.IsDeleted == true);
-        }
-        #endregion
-
-        #region UPDATE
-        public void Update(Offer offer)
-        {
-            db.Entry(offer).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-        }
-        #endregion
-
-        #region DELETE
-        public void Delete(Offer offer)
-        {
-            db.Offers.Remove(offer);
-        }
-
         public void DeletePermanently(Offer offer)
         {
             db.Offers.Remove(offer);
             db.SaveChanges();
         }
-        #endregion
     }
 }

@@ -250,10 +250,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgreementBLL.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="InvoiceBLL.cs" />
     <Compile Include="Models\AddressBLL.cs" />
     <Compile Include="Models\AgreementBLL.cs" />
     <Compile Include="Models\InvoiceBLL.cs" />
+    <Compile Include="Models\InvoiceItemBLL.cs" />
     <Compile Include="Models\NoticeBLL.cs" />
     <Compile Include="Models\OfferBLL.cs" />
     <Compile Include="Models\OrganizationBLL.cs" />

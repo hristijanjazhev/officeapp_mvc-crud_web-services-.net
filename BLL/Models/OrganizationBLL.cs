@@ -1,5 +1,7 @@
-﻿using DAL_EF;
+﻿using BusinessLogicLayer;
+using DAL_EF;
 using DAL_EF.Models;
+using DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,54 +12,79 @@ namespace BLL.Models
 {
     public class OrganizationBLL
     {
-        readonly OrganizationDAL organizationDAL = new OrganizationDAL();
-
-        #region CREATE
-        public void Insert(Organization organization)
+         OrganizationDAL organizationDAL = new OrganizationDAL();
+        AddressBLL addressBLL = new AddressBLL();
+        OfferBLL offerBLL = new OfferBLL();
+        //ALL
+        public List<Organization> GetALL()
         {
-            organizationDAL.Insert(organization);
+            return organizationDAL.GetAll();
         }
-
-        public int InsertReturnId(Organization organization)
+        //Active
+        public IEnumerable<Organization> GetAllActive()
         {
-            return organizationDAL.InsertReturnId(organization);
+            return organizationDAL.GetAll().Where(p => p.IsActive == true && p.IsDeleted == false);
         }
-        #endregion
-
-        #region RETRIEVE
-        public List<Organization> GetAll()
+        //NotActive
+        public IEnumerable<Organization> GetAllNotActive()
         {
-            return organizationDAL.GetAll().ToList();
+            return organizationDAL.GetAll().Where(p => p.IsActive == false && p.IsDeleted == false);
         }
-
-        public Organization GetById(int id)
+        //Deleted
+        public IEnumerable<Organization> GetAllDeleted()
+        {
+            return organizationDAL.GetAll().Where(p => p.IsActive == false && p.IsDeleted == true);
+        }
+        //ById
+        public Organization GetById (int id)
         {
             return organizationDAL.GetById(id);
         }
-
-        public List<Organization> GetAllActive()
+        //VatNumber
+        public Organization GetByVatNumber (string vatNumber)
         {
-            return organizationDAL.GetAllActive().ToList();
+            return organizationDAL.GetAll().Where(p => p.VatNumber == vatNumber).FirstOrDefault();    
         }
-        #endregion
-
-        #region UPDATE
-        public void Update(Organization organization)
+        //CompanyId
+        public Organization GetByCompanyId(string companyId)
+        {
+            return organizationDAL.GetAll().Where(p => p.CompanyId == companyId).FirstOrDefault();
+        }
+        //ByVatAndCompanyId
+        public Organization GetByVatNumberAndByCompanyId(string vatNumber,string companyId)
+        {
+            return organizationDAL.GetAll().Where(p => p.VatNumber == vatNumber && p.CompanyId == companyId).FirstOrDefault();
+        }
+        //INSERTS
+        public void Insert(Organization organization)
+        {
+             organizationDAL.Insert(organization);
+        }
+        //ReturnID
+        public Int32 InsertReturnId (Organization organization)
+        {
+            return organizationDAL.InsertReturnId(organization);
+        }
+        //Update
+        public void Update(Organization organization) 
         {
             organizationDAL.Update(organization);
         }
-        #endregion
-
-        #region DELETE
-        public void Delete(Organization organization)
+        //Delete
+        public void Delete(Organization organization) 
         {
-            organizationDAL.Delete(organization);
+            //organization.IsActive == false;
+            //organization.IsDelete == true;
+            organizationDAL.Update(organization);
         }
-
         public void DeletePermanently(Organization organization)
         {
+            List<Offer> relatedOffersForDelete = offerBLL.GetAllOffersByOrganizationId(organization.OrganizationId);
+            Address addressForDelete = addressBLL.GetById(organization.AddressId);
             organizationDAL.DeletePermanently(organization);
+            addressBLL.DeletePermanently(addressForDelete);
         }
-        #endregion
+        
+
     }
 }

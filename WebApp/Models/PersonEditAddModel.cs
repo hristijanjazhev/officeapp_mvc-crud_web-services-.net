@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
-namespace WebApp.Models
+namespace DMS.Models
 {
-    public class PersonEditAddModel
+    public class PersonAddEditModel
     {
         [Key]
         public int PersonId { get; set; }
@@ -14,7 +14,7 @@ namespace WebApp.Models
         [Display(Name = "Име")]
         [Required(ErrorMessage = "Задолжителен внес")]
         [StringLength(50, ErrorMessage = "Дозволени се 50 карактери")]
-        public string PersonFirstName { get; set; }
+        public string PersonName { get; set; }
 
         [Display(Name = "Презиме")]
         [Required(ErrorMessage = "Задолжителен внес")]
@@ -22,10 +22,12 @@ namespace WebApp.Models
         public string PersonLastName { get; set; }
 
         [Display(Name = "ID Број")]
-        public System.Int32 IdNumber { get; set; }
+        [Required(ErrorMessage = "Задолжителен внес")]
+        [StringLength(20, ErrorMessage = "Дозволени се 20 карактери")]
+        public string IdNumber { get; set; }
 
         [Display(Name = "Надимак")]
-        public string PersonMiddleName { get; set; }
+        public string MiddleName { get; set; }
 
         [Display(Name = "Адреса за е-пошта")]
         [StringLength(256, ErrorMessage = "Дозволени се 256 карактери")]
@@ -78,10 +80,5 @@ namespace WebApp.Models
         [Required(ErrorMessage = "Полето е задолжително")]
         public string Country { get; set; }
 
-
-
-        [Display(Name = "EMBG")]
-        [StringLength(20, ErrorMessage = "Дозволени се 20 карактери")]
-        public int EMBG { get; set; }
     }
 }

@@ -7,25 +7,17 @@
 <br />
 <br />
 <br />
-<br />
 <h2>Index</h2>
-<br />
-<br />
-<p class="btn btn-info">
 
+<p class="btn btn-info">
     @Html.ActionLink("Create New", "Create")
 </p>
-<form method="get" asp-action="Index">
-    <p>
-        <input type="search" placeholder="Enter person name or address id" value="@ViewData["GetAddressDetails"]" name="Addrsearch" style="width:500px" />
-        <input type="submit" value="Search" class="btn btn-primary" />
-        @*<a asp-action="Index" class="btn btn-success pull-left">Get All Addresses</a>*@
-    </p>
-</form>
-<table class="table table-hover">
-    <tr style="background-color:darkgoldenrod">
+<br />
+<br />
+<table class="table table-bordered">
+    <tr class="bg-primary">
         <th>
-            @Html.DisplayNameFor(model => model.PersonFirstName)
+            @Html.DisplayNameFor(model => model.PersonName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PersonLastName)
@@ -34,7 +26,7 @@
             @Html.DisplayNameFor(model => model.IdNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PersonMiddleName)
+            @Html.DisplayNameFor(model => model.MiddleName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
@@ -46,67 +38,65 @@
             @Html.DisplayNameFor(model => model.AddressId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMBG)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.IsActive)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IsDeleted)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMBG)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.PersonFirstName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PersonLastName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.IdNumber)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PersonMiddleName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Email)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PhoneNumber)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.AddressId)
-    </td>
-
-    <td>
-        @Html.DisplayFor(modelItem => item.Gender)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.EMBG)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.IsActive)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.IsDeleted)
-    </td>
-
-    <td class="btn btn-warning" width="69">
-        @Html.ActionLink("Edit", "Edit", new { id = item.PersonId })
-    </td>
-    <td class="btn btn-success" width="69">
-        @Html.ActionLink("Details", "Details", new { id = item.PersonId })
-    </td>
-    <td class="btn btn-danger" width="69">
-        @Html.ActionLink("Delete", "Delete", new { id = item.PersonId })
-    </td>
-</tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MiddleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddressId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDeleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMBG)
+        </td>
+        <td class="btn btn-warning" width="80px">
+            @Html.ActionLink("Edit", "Edit", new { id=item.PersonId }) 
+            </td>
+        <td class="btn btn-success" width="80px">
+            @Html.ActionLink("Details", "Details", new { id=item.PersonId }) 
+            </td>
+        <td class="btn btn-danger" width="80px">
+            @Html.ActionLink("Delete", "Delete", new { id=item.PersonId })
+        </td>
+    </tr>
 }
 
 </table>

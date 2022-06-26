@@ -12,7 +12,7 @@
           <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Street" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="Number" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="PostalCode" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="State" Type="nvarchar" MaxLength="50" />
           <Property Name="Province" Type="nvarchar" MaxLength="50" />
@@ -147,10 +147,10 @@
             <PropertyRef Name="PersonId" />
           </Key>
           <Property Name="PersonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PersonFirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PersonName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PersonLastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IdNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="PersonMiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AddressId" Type="int" Nullable="false" />
@@ -601,7 +601,7 @@
           <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Street" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Number" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PostCode" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -759,10 +759,10 @@
             <PropertyRef Name="PersonId" />
           </Key>
           <Property Name="PersonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PersonFirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PersonName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PersonLastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PersonMiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AddressId" Type="Int32" Nullable="false" />
@@ -945,7 +945,7 @@
                 <ScalarProperty Name="Province" ColumnName="Province" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="Street" ColumnName="Street" />
                 <ScalarProperty Name="AddressId" ColumnName="AddressId" />
@@ -1090,10 +1090,10 @@
                 <ScalarProperty Name="AddressId" ColumnName="AddressId" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PersonMiddleName" ColumnName="PersonMiddleName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
                 <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
                 <ScalarProperty Name="PersonLastName" ColumnName="PersonLastName" />
-                <ScalarProperty Name="PersonFirstName" ColumnName="PersonFirstName" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
                 <ScalarProperty Name="PersonId" ColumnName="PersonId" />
               </MappingFragment>
             </EntityTypeMapping>

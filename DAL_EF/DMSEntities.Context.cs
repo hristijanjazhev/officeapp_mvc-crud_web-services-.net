@@ -486,7 +486,45 @@ public partial class DMSEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spPersonAddress_InnerJoin_Result>("spPersonAddress_InnerJoin");
     }
 
-}
+        //public System.Data.Entity.DbSet<WebApp.Models.OfferAddEditModel> OfferAddEditModels { get; set; }
+
+        //public System.Data.Entity.DbSet<WebApp.Models.OfferAddEditModel> OfferAddEditModels { get; set; }
+
+        //public System.Data.Entity.DbSet<WebApp.Models.NoticeAddEditModel> NoticeAddEditModels { get; set; }
+
+        //public System.Data.Entity.DbSet<WebApp.Models.AgreementAddEditModel> AgreementAddEditModels { get; set; }
+
+        //public System.Data.Entity.DbSet<WebApp.Models.AgreementAddEditModel> AgreementAddEditModels { get; set; }
+
+        //public System.Data.Entity.DbSet<WebApp.Models.InvoiceAddEditModel> InvoiceAddEditModels { get; set; }
+
+        //public System.Data.Entity.DbSet<WebApp.Models.NoticeAddEditModel> NoticeAddEditModels { get; set; }
+
+        //public System.Data.Entity.DbSet<WebApp.Models.NoticeAddEditModel> NoticeAddEditModels { get; set; }
+
+        //public System.Data.Entity.DbSet<DMS.Models.OfferAddEditModel> OfferAddEditModels { get; set; }
+
+        //public System.Data.Entity.DbSet<DMS.Models.PersonAddEditModel> PersonAddEditModels { get; set; }
+
+        //public System.Data.Entity.DbSet<DMS.Models.PersonAddEditModel> PersonAddEditModels { get; set; }
+
+        //public System.Data.Entity.DbSet<DMS.Models.PersonAddEditModel> PersonAddEditModels { get; set; }
+
+        //public System.Data.Entity.DbSet<DMS.Models.PersonAddEditModel> PersonAddEditModels { get; set; }
+
+        //public System.Data.Entity.DbSet<DMS.Models.PersonAddEditModel> PersonAddEditModels { get; set; }
+
+        //public System.Data.Entity.DbSet<WebApp.Models.OrganizationAddEditModel> OrganizationAddEditModels { get; set; }
+
+
+        //public System.Data.Entity.DbSet<WebApp.Models.OrganizationAddEditModel> OrganizationAddEditModels { get; set; }
+
+        //public System.Data.Entity.DbSet<WebApp.Models.OrganizationAddEditModel> OrganizationAddEditModels { get; set; }
+
+        //public System.Data.Entity.DbSet<WebApp.Models.OrganizationAddEditModel> OrganizationAddEditModels { get; set; }
+
+        //public System.Data.Entity.DbSet<WebApp.Models.OrganizationAddEditModel> OrganizationAddEditModels { get; set; }
+    }
 
 }
 

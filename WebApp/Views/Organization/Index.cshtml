@@ -7,22 +7,15 @@
 <br />
 <br />
 <br />
+
 <h2>Index</h2>
 
 <p class="btn btn-info">
     @Html.ActionLink("Create New", "Create")
 </p>
 <br />
-<br />
-<form method="get" asp-action="Index">
-    <p>
-        <input type="search" placeholder="Enter Address City or Number..." value="@ViewData["GetAddressDetails"]" name="Addrsearch" style="width:500px" />
-        <input type="submit" value="Search" class="btn btn-primary" />
-        @*<a asp-action="Index" class="btn btn-success pull-left">Get All Addresses</a>*@
-    </p>
-</form>
-<table class="table table-bordered">
-    <tr style="background-color:darkgoldenrod">
+<table class="table table-hover">
+    <tr class="bg-warning">
         <th>
             @Html.DisplayNameFor(model => model.OrganizationName)
         </th>
@@ -88,13 +81,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.Address.Street)
         </td>
-        <td class="btn btn-warning" width="44">
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrganizationId }) 
+        <td></td>   
+        <td class="btn btn-warning" width="80px">
+             @Html.ActionLink("Edit", "Edit", new { id=item.OrganizationId }) 
             </td>
-        <td class="btn btn-success" width="58">
+        <td class="btn btn-success" width="80px">
             @Html.ActionLink("Details", "Details", new { id=item.OrganizationId }) 
             </td>
-        <td class="btn btn-danger" width="55">
+        <td class="btn btn-danger" width="80px">
             @Html.ActionLink("Delete", "Delete", new { id=item.OrganizationId })
         </td>
     </tr>

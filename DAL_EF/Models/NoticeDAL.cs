@@ -9,20 +9,36 @@ namespace DAL_EF.Models
 {
     public class NoticeDAL
     {
-        readonly DMSEntities db = new DMSEntities();
 
-        #region CREATE
+        DMSEntities db = new DMSEntities();
+
+        public List<Notice> GetAll()
+        {
+            return db.Notices.ToList();
+        }
+
+        public Notice GetById(int id)
+        {
+            return db.Notices.Where(p => p.NoticeId == id).SingleOrDefault();
+        }
+
         public void Insert(Notice notice)
         {
             db.Notices.Add(notice);
+            db.SaveChanges();
         }
 
-        public int InsertReturnId(Notice notice)
+        public void Update(Notice notice)
         {
-            int id = 0;
+            db.Entry(notice).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public Int32 InsertReturnId(Notice notice)
+        {
+            int id = Int32.MinValue;
             db.Notices.Add(notice);
             TransactionScope ts = new TransactionScope();
-
             try
             {
                 if (db.SaveChanges() > 0)
@@ -30,10 +46,11 @@ namespace DAL_EF.Models
                     id = notice.NoticeId;
                     ts.Complete();
                 }
+
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new ArgumentException(e.Message, e.InnerException);
+                throw new ArgumentException(ex.Message, ex.InnerException);
             }
             finally
             {
@@ -44,47 +61,7 @@ namespace DAL_EF.Models
             }
 
             return id;
-        }
-        #endregion
 
-        #region RETRIEVE
-        public IQueryable<Notice> GetAll()
-        {
-            return db.Notices;
-        }
-
-        public Notice GetById(int id)
-        {
-            return db.Notices.Where(a => a.NoticeId == id).SingleOrDefault();
-        }
-        public IQueryable<Notice> GetAllActive()
-        {
-            return db.Notices.Where(a => a.IsActive == true);
-        }
-
-        public IQueryable<Notice> GetAllNotActive()
-        {
-            return db.Notices.Where(a => a.IsActive == false);
-        }
-
-        public IQueryable<Notice> GetAllDeleted()
-        {
-            return db.Notices.Where(a => a.IsDeleted == true);
-        }
-        #endregion
-
-        #region UPDATE
-        public void Update(Notice notice)
-        {
-            db.Entry(notice).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-        }
-        #endregion
-
-        #region DELETE
-        public void Delete(Notice notice)
-        {
-            db.Notices.Remove(notice);
         }
 
         public void DeletePermanently(Notice notice)
@@ -92,6 +69,6 @@ namespace DAL_EF.Models
             db.Notices.Remove(notice);
             db.SaveChanges();
         }
-        #endregion
+
     }
 }

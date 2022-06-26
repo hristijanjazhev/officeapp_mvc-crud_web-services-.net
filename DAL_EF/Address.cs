@@ -33,7 +33,7 @@ public partial class Address
 
     public string Number { get; set; }
 
-    public string PostalCode { get; set; }
+    public string PostCode { get; set; }
 
     public string City { get; set; }
 

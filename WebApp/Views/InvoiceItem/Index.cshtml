@@ -1,0 +1,106 @@
+﻿@model IEnumerable<DAL_EF.InvoiceItem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VatUnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriceIncludingVat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriceExcludingVat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VatAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscountAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscountPersentage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Invoice.InvoiceNumber)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VatUnitPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceIncludingVat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceExcludingVat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VatAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscountAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscountPersentage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDeleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Invoice.InvoiceNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.InvoiceItemId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.InvoiceItemId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.InvoiceItemId })
+        </td>
+    </tr>
+}
+
+</table>

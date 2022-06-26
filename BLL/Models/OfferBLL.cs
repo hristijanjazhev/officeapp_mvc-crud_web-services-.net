@@ -10,54 +10,67 @@ namespace BLL.Models
 {
     public class OfferBLL
     {
-        readonly OfferDAL offerDAL = new OfferDAL();
+        OfferDAL offerDAL = new OfferDAL();
 
-        #region CREATE
-        public void Insert(Offer offer)
-        {
-            offerDAL.Insert(offer);
-        }
-
-        public int InsertReturnId(Offer offer)
-        {
-            return offerDAL.InsertReturnId(offer);
-        }
-        #endregion
-
-        #region RETRIEVE
         public List<Offer> GetAll()
         {
             return offerDAL.GetAll().ToList();
         }
 
-        public Offer GetById(int id)
+        public Offer GetById(Int32 id)
         {
             return offerDAL.GetById(id);
         }
-
-        public List<Offer> GetAllActive()
+        public void Insert(Offer offer)
         {
-            return offerDAL.GetAllActive().ToList();
+            offerDAL.Insert(offer);
         }
-        #endregion
 
-        #region UPDATE
+        public Int32 InsertReturnId(Offer offer)
+        {
+            return offerDAL.InsertReturnId(offer);
+        }
         public void Update(Offer offer)
         {
             offerDAL.Update(offer);
         }
-        #endregion
-
-        #region DELETE
         public void Delete(Offer offer)
         {
-            offerDAL.Delete(offer);
+            //offer.IsAccepted == false;
+            //offer.IsDeleted == true;
+            offerDAL.Update(offer);
         }
-
         public void DeletePermanently(Offer offer)
         {
+
             offerDAL.DeletePermanently(offer);
+
         }
-        #endregion
+
+        public IEnumerable<Offer> GetAllActive()
+        {
+            return offerDAL.GetAll().Where(p => p.IsAccepted == true && p.IsDeleted == false);
+        }
+
+        public IEnumerable<Offer> GetAllNotActive()
+        {
+            return offerDAL.GetAll().Where(p => p.IsAccepted == false && p.IsDeleted == false);
+        }
+
+        public IEnumerable<Offer> GetAllDeleted()
+        {
+            return offerDAL.GetAll().Where(p => p.IsAccepted == false && p.IsDeleted == true);
+        }
+
+        public Offer GetByIdNumber(string offerNumber)
+        {
+            return offerDAL.GetAll().Where(p => p.OfferNumber == offerNumber).SingleOrDefault();
+        }
+
+        public List<Offer> GetAllOffersByOrganizationId(int id)
+        {
+            return offerDAL.GetAll().Where(item => item.OrganizationId == id).ToList();
+        }
+
     }
 }

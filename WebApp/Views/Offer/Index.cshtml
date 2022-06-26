@@ -1,0 +1,160 @@
+﻿@model IEnumerable<DAL_EF.Offer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OfferNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscountPercent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscountAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OfferAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValidityDays)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValidityDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disclaimer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Body)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Currency)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrencyRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VatAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReasonForDeclining)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAccepted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceItem.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Organization.OrganizationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Person.PersonName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OfferNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscountPercent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscountAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OfferAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValidityDays)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValidityDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Disclaimer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Subject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Body)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Currency)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrencyRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VatAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReasonForDeclining)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAccepted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDeleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceItem.ItemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Organization.OrganizationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Person.PersonName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OfferId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OfferId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OfferId })
+        </td>
+    </tr>
+}
+
+</table>

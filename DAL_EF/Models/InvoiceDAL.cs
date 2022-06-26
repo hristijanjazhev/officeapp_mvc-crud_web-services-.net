@@ -7,33 +7,50 @@ using System.Transactions;
 
 namespace DAL_EF.Models
 {
+
     public class InvoiceDAL
     {
-        readonly DMSEntities db = new DMSEntities();
+        DMSEntities db = new DMSEntities();
 
-        #region CREATE
+        public List<Invoice> GetAll()
+        {
+            return db.Invoices.ToList();
+        }
+
+        public Invoice GetById(int id)
+        {
+            return db.Invoices.Where(p => p.InvoiceId == id).SingleOrDefault();
+        }
+
         public void Insert(Invoice invoice)
         {
             db.Invoices.Add(invoice);
+            db.SaveChanges();
         }
 
-        public int InsertReturnId(Invoice invoice)
+        public void Update(Invoice invoice)
         {
-            int id = 0;
+            db.Entry(invoice).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public Int32 InsertReturnId(Invoice invoice)
+        {
+            int id = Int32.MinValue;
             db.Invoices.Add(invoice);
             TransactionScope ts = new TransactionScope();
-
             try
             {
                 if (db.SaveChanges() > 0)
                 {
-                    id = invoice.AgreementId;
+                    id = invoice.InvoiceId;
                     ts.Complete();
                 }
+
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new ArgumentException(e.Message, e.InnerException);
+                throw new ArgumentException(ex.Message, ex.InnerException);
             }
             finally
             {
@@ -44,47 +61,7 @@ namespace DAL_EF.Models
             }
 
             return id;
-        }
-        #endregion
 
-        #region RETRIEVE
-        public IQueryable<Invoice> GetAll()
-        {
-            return db.Invoices;
-        }
-
-        public Invoice GetById(int id)
-        {
-            return db.Invoices.Where(a => a.InvoiceId == id).SingleOrDefault();
-        }
-        public IQueryable<Invoice> GetAllActive()
-        {
-            return db.Invoices.Where(a => a.IsActive == true);
-        }
-
-        public IQueryable<Invoice> GetAllNotActive()
-        {
-            return db.Invoices.Where(a => a.IsActive == false);
-        }
-
-        public IQueryable<Invoice> GetAllDeleted()
-        {
-            return db.Invoices.Where(a => a.IsDeleted == true);
-        }
-        #endregion
-
-        #region UPDATE
-        public void Update(Invoice invoice)
-        {
-            db.Entry(invoice).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-        }
-        #endregion
-
-        #region DELETE
-        public void Delete(Invoice invoice)
-        {
-            db.Invoices.Remove(invoice);
         }
 
         public void DeletePermanently(Invoice invoice)
@@ -92,6 +69,8 @@ namespace DAL_EF.Models
             db.Invoices.Remove(invoice);
             db.SaveChanges();
         }
-        #endregion
+
+
+
     }
 }

@@ -33,13 +33,13 @@ public partial class Person
 
     public int PersonId { get; set; }
 
-    public string PersonFirstName { get; set; }
+    public string PersonName { get; set; }
 
     public string PersonLastName { get; set; }
 
     public string IdNumber { get; set; }
 
-    public string PersonMiddleName { get; set; }
+    public string MiddleName { get; set; }
 
     public string Email { get; set; }
 
