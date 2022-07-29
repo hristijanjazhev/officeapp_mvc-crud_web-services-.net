@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using BusinessLogicLayer;
 using DAL_EF;
 
 namespace API.Controllers
@@ -15,12 +16,34 @@ namespace API.Controllers
     public class PersonController : ApiController
     {
         private DMSEntities db = new DMSEntities();
-
+        PersonBLL personBLL = new PersonBLL();
         // GET: api/Person
-        public IQueryable<Person> GetPeople()
+        #region GET
+        [HttpGet]
+       public IHttpActionResult GetAllPersons()
         {
-            return db.People;
+            IEnumerable<Person> people = personBLL.GetAll();
+            List<Models.PersonAddViewModel> personToReturn = new List<Models.PersonAddViewModel>();
+            foreach(Person p in people)
+            {
+                Models.PersonAddViewModel personAddViewModel = new Models.PersonAddViewModel();
+                personAddViewModel.PersonId = p.PersonId;
+                personAddViewModel.PersonName = p.PersonName;
+                personAddViewModel.PersonLastName = p.PersonLastName;
+                personAddViewModel.IdNumber = p.IdNumber;
+                personAddViewModel.MiddleName = p.MiddleName;
+                personAddViewModel.Email = p.Email;
+                personAddViewModel.PhoneNumber = p.PhoneNumber;
+                personAddViewModel.AddressId = p.AddressId;
+                personAddViewModel.IsActive = p.IsActive;
+                personAddViewModel.IsDeleted = p.IsDeleted;
+                personAddViewModel.Gender = p.Gender;
+                personAddViewModel.EMBG = p.EMBG;
+            }
+
+            return Ok();
         }
+        #endregion
 
         // GET: api/Person/5
         [ResponseType(typeof(Person))]

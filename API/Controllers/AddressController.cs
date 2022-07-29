@@ -19,7 +19,6 @@ namespace API.Controllers
         //GET Method
         #region GET 
         [HttpGet]
-        [Route("api/[controller]")]
         public IHttpActionResult GetAllAddresses()
         {
             IEnumerable<Address> addresses = addressBLL.GetAll();
@@ -54,7 +53,6 @@ namespace API.Controllers
         //POST Method
         #region POST
         [HttpPost]
-        [Route("api/[controller]")]
         public IHttpActionResult Create(Models.AddressViewModel newAddress)
         {
             Address newAddressToInsert = new Address();
@@ -86,7 +84,6 @@ namespace API.Controllers
         }
 
         [HttpPut]
-        [Route("api/[controller]")]
         public IHttpActionResult Edit(int id, Models.AddressViewModel address)
         {
             Address newAddressToInsert = new Address();
@@ -112,7 +109,6 @@ namespace API.Controllers
         //DELETE Method
         #region DELETE
         [HttpDelete]
-        [Route("api/[controller]/{id}")]
         public IHttpActionResult Delete(int id)
         {
             Address address = addressDAL.GetById(id);

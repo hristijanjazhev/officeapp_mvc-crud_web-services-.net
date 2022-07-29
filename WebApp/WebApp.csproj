@@ -466,6 +466,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\API\API.csproj">
+      <Project>{3a3a3680-b361-40c7-a89f-05ccfe383632}</Project>
+      <Name>API</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{99aa0c4a-cf66-450a-8b23-f730dedcab96}</Project>
       <Name>BLL</Name>
