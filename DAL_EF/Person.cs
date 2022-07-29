@@ -12,63 +12,63 @@
 namespace DAL_EF
 {
 
-using System;
+    using System;
     using System.Collections.Generic;
-    
-public partial class Person
-{
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Person()
+    public partial class Person
     {
 
-        this.Invoices = new HashSet<Invoice>();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Person()
+        {
 
-        this.Notices = new HashSet<Notice>();
+            this.Invoices = new HashSet<Invoice>();
 
-        this.Offers = new HashSet<Offer>();
+            this.Notices = new HashSet<Notice>();
+
+            this.Offers = new HashSet<Offer>();
+
+        }
+
+
+        public int PersonId { get; set; }
+
+        public string PersonName { get; set; }
+
+        public string PersonLastName { get; set; }
+
+        public string IdNumber { get; set; }
+
+        public string MiddleName { get; set; }
+
+        public string Email { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+        public int AddressId { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public int Gender { get; set; }
+
+        public string EMBG { get; set; }
+
+
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+        public virtual ICollection<Invoice> Invoices { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+        public virtual ICollection<Notice> Notices { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+        public virtual ICollection<Offer> Offers { get; set; }
 
     }
-
-
-    public int PersonId { get; set; }
-
-    public string PersonName { get; set; }
-
-    public string PersonLastName { get; set; }
-
-    public string IdNumber { get; set; }
-
-    public string MiddleName { get; set; }
-
-    public string Email { get; set; }
-
-    public string PhoneNumber { get; set; }
-
-    public int AddressId { get; set; }
-
-    public bool IsActive { get; set; }
-
-    public bool IsDeleted { get; set; }
-
-    public int Gender { get; set; }
-
-    public string EMBG { get; set; }
-
-
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<Invoice> Invoices { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<Notice> Notices { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<Offer> Offers { get; set; }
-
-}
 
 }
