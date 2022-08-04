@@ -69,7 +69,7 @@ namespace API.Controllers
 
             var addressIdFromDb = addressBLL.InsertReturnId(newAddressToInsert);
 
-            return Ok();
+            return Ok(addresIdFromDb);
         }
         #endregion
 
@@ -80,7 +80,7 @@ namespace API.Controllers
         public IHttpActionResult Edit(int id)
         {
             var address = addressDAL.GetById(id);
-            return Ok();
+            return Ok(address);
         }
 
         [HttpPut]
@@ -102,7 +102,7 @@ namespace API.Controllers
 
             addressBLL.Update(newAddressToInsert);
 
-            return Ok();
+            return Ok(newAddressToInsert);
         }
         #endregion
 

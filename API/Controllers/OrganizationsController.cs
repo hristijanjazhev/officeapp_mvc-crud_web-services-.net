@@ -10,12 +10,14 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using BLL.Models;
 using DAL_EF;
+using DataAccessLayer;
 
 namespace API.Controllers
 {
     public class OrganizationsController : ApiController
     {
         OrganizationBLL organizationBLL = new OrganizationBLL();
+        OrganizationDAL organizationDAL = new OrganizationDAL();
         DMSEntities db = new DMSEntities();
         int organizationId;
 
@@ -39,7 +41,7 @@ namespace API.Controllers
                     organizationModel.Description = o.Description;
                     organizationModel.Email = o.Email;
                     organizationModel.PhoneNumber = o.PhoneNumber;
-                    organizationModel.Type = (int)o.Type;
+                    organizationModel.Type = o.Type;
                     organizationModel.AddressId = o.AddressId;
                     organizationModel.IsActive = o.IsActive;
                     organizationModel.IsDeleted = o.IsDeleted;
@@ -62,6 +64,7 @@ namespace API.Controllers
 
         //GET: api/Organizations/5
         #region Get{id}
+        [HttpGet]
         [ResponseType(typeof(Organization))]
         public IHttpActionResult GetOrganization(int id)
         {
@@ -80,38 +83,39 @@ namespace API.Controllers
         //PUT: api/Organizations/5
         #region PUT
         [HttpPut]
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutOrganization(int id, Organization organization)
+        public IHttpActionResult EditOrganization(int id)
         {
+            var organization = organizationBLL.GetById(id);
+            return Ok();
+        }
+        [HttpPost]
+        public IHttpActionResult EditOrganization(int id, Models.OrganizationViewModel organizationViewModel)
+        {
+            Organization newOrganization = new Organization();
+            newOrganization.OrganizationId = organizationViewModel.OrganizationId;
+            newOrganization.OrganizationName = organizationViewModel.OrganizationName;
+            newOrganization.CompanyId = organizationViewModel.CompanyId;
+            newOrganization.VatNumber = organizationViewModel.VatNumber;
+            newOrganization.Description = organizationViewModel.Description;
+            newOrganization.Email = organizationViewModel.Email;
+            newOrganization.PhoneNumber = organizationViewModel.PhoneNumber;
+            newOrganization.Type = organizationViewModel.Type;
+            newOrganization.AddressId = organizationViewModel.AddressId;
+            newOrganization.IsActive = organizationViewModel.IsActive;
+            newOrganization.IsDeleted = organizationViewModel.IsDeleted;
+
+           var organizations =  organizationBLL.InsertReturnId(newOrganization);
+
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Ok(organizations);
             }
-
-            if (id != organization.OrganizationId)
+            else
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            db.Entry(organization).State = EntityState.Modified;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OrganizationExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
         }
         #endregion
 
@@ -119,18 +123,25 @@ namespace API.Controllers
 
         //POST 
         #region POST
-        [ResponseType(typeof(Organization))]
-        public IHttpActionResult PostOrganization(Organization organization)
+        [HttpPost]
+        public IHttpActionResult PostOrganization(Models.OrganizationViewModel organizationViewModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            Organization organization = new Organization();
+            organizationViewModel.OrganizationId = organization.OrganizationId;
+            organizationViewModel.OrganizationName = organization.OrganizationName;
+            organizationViewModel.CompanyId = organization.CompanyId;
+            organizationViewModel.VatNumber = organization.VatNumber;
+            organizationViewModel.Description = organization.Description;
+            organizationViewModel.Email = organization.Email;
+            organizationViewModel.PhoneNumber = organization.PhoneNumber;
+            organizationViewModel.Type = organization.Type;
+            organizationViewModel.AddressId = organization.AddressId;
+            organizationViewModel.IsActive = organization.IsActive;
+            organizationViewModel.IsDeleted = organization.IsDeleted;
 
-            db.Organizations.Add(organization);
-            db.SaveChanges();
+            var organizationId = organizationBLL.InsertReturnId(organization);
 
-            return CreatedAtRoute("DefaultApi", new { id = organization.OrganizationId }, organization);
+            return Ok(organizationId);
         }
         #endregion
 
@@ -142,30 +153,13 @@ namespace API.Controllers
         [HttpDelete]
         public IHttpActionResult DeleteOrganization(int id)
         {
-            Organization organization = db.Organizations.Find(id);
-            if (organization == null)
-            {
-                return NotFound();
-            }
+            Organization organization = organizationDAL.GetById(id);
+            organizationDAL.DeletePermanently(organization);
 
-            db.Organizations.Remove(organization);
-            db.SaveChanges();
 
             return Ok(organization);
-        }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
 
-        private bool OrganizationExists(int id)
-        {
-            return db.Organizations.Count(e => e.OrganizationId == id) > 0;
         }
     }
 }
