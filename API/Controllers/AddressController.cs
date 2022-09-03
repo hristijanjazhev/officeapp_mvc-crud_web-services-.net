@@ -50,6 +50,16 @@ namespace API.Controllers
         }
         #endregion
 
+        //GET{id} : api/Address
+        #region GET{id}
+        [HttpGet]
+        public IHttpActionResult GetAddressById(int id)
+        {
+            var addresses = addressBLL.GetById(id);
+            return Ok();
+        }
+        #endregion
+
         //POST Method
         #region POST
         [HttpPost]

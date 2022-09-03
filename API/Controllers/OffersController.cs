@@ -19,32 +19,56 @@ namespace API.Controllers
         OfferBLL offerBLL = new OfferBLL();
         OfferDAL offerDAL = new OfferDAL();
         int offerId;
-        readonly DMSEntities db = new DMSEntities();
 
         // GET: api/Offers
         #region GET
         [HttpGet]
-        public IHttpActionResult GetOffers()
+        public IHttpActionResult GetAllOffers()
         {
-            var offers = offerBLL.GetAll();
+            IEnumerable<Offer> offers = offerBLL.GetAll();
+            List<Models.OfferViewModel> offerViewModels = new List<Models.OfferViewModel>();
 
-            return Ok(offers);
+
+            foreach(Offer o in offers)
+            {
+                Models.OfferViewModel newOfferViewModels = new Models.OfferViewModel();
+                newOfferViewModels.OfferId = o.OfferId;
+                newOfferViewModels.OrganizationId = o.OrganizationId;
+                newOfferViewModels.PersonId = o.PersonId;
+                newOfferViewModels.InvoiceItemId = o.InvoiceItemId;
+                newOfferViewModels.OfferNumber = o.OfferNumber;
+                newOfferViewModels.Amount = o.Amount;
+                newOfferViewModels.DiscountPercent = o.DiscountPercent;
+                newOfferViewModels.DiscountAmount = o.DiscountAmount;
+                newOfferViewModels.OfferAmount = o.OfferAmount;
+                newOfferViewModels.CreateDate = o.CreateDate;
+                newOfferViewModels.ValidityDays = o.ValidityDays;
+                newOfferViewModels.ValidityDate = o.ValidityDate;
+                newOfferViewModels.Disclaimer = o.Disclaimer;
+                newOfferViewModels.Title = o.Title;
+                newOfferViewModels.Subject = o.Subject;
+                newOfferViewModels.Body = o.Body;
+                newOfferViewModels.Currency = o.Currency;
+                newOfferViewModels.CurrencyRate = o.CurrencyRate;
+                newOfferViewModels.Vat = o.Vat;
+                newOfferViewModels.VatAmount = o.VatAmount;
+                newOfferViewModels.ReasonForDeclining = o.ReasonForDeclining;
+                newOfferViewModels.IsAccepted = o.IsAccepted;
+                newOfferViewModels.IsDeleted = o.IsDeleted;
+
+                offerViewModels.Add(newOfferViewModels);
+            }
+            return Ok();
         }
         #endregion
 
         // GET: api/Offers/5
         #region GET{id}
         [HttpGet]
-        [ResponseType(typeof(Offer))]
         public IHttpActionResult GetOffer(int id)
         {
-            Offer offer = db.Offers.Find(id);
-            if (offer == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(offer);
+            var offers = offerBLL.GetById(id);
+            return Ok();
         }
         #endregion
 
@@ -52,8 +76,7 @@ namespace API.Controllers
         // POST: api/Offers
         #region POST
         [HttpPost]
-        [ResponseType(typeof(Offer))]
-        public IHttpActionResult PostOffer(Models.OfferViewModel offerViewModel)
+        public IHttpActionResult InsertOffer(Models.OfferViewModel offerViewModel)
         {
             Offer offer = new Offer();
 
@@ -82,7 +105,6 @@ namespace API.Controllers
 
             var offerId =  offerBLL.InsertReturnId(offer);
 
-
             if (!ModelState.IsValid)
             {
                 return NotFound();
@@ -97,7 +119,6 @@ namespace API.Controllers
         // DELETE: api/Offers/5
         #region DELETE
         [HttpDelete]
-        [ResponseType(typeof(Offer))]
         public IHttpActionResult DeleteOffer(int id)
         {
             Offer offer = offerDAL.GetById(id);

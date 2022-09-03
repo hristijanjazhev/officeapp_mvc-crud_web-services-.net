@@ -82,13 +82,13 @@ namespace API.Controllers
 
         //PUT: api/Organizations/5
         #region PUT
-        [HttpPut]
+        [HttpGet]
         public IHttpActionResult EditOrganization(int id)
         {
             var organization = organizationBLL.GetById(id);
             return Ok();
         }
-        [HttpPost]
+        [HttpPut]
         public IHttpActionResult EditOrganization(int id, Models.OrganizationViewModel organizationViewModel)
         {
             Organization newOrganization = new Organization();
@@ -175,42 +175,6 @@ namespace API.Controllers
 
 
 
-
-
-
-
-
-
-
-//[HttpPost]
-//[Route("api/[controller]")]
-//[ResponseType(typeof(Organization))]
-//public IHttpActionResult Create(Models.OrganizationViewModel newOrganization)
-//{
-//    Organization newOrgToInsert = new Organization();
-
-//    newOrgToInsert.OrganizationId = newOrganization.OrganizationId;
-//    newOrgToInsert.OrganizationName = newOrganization.OrganizationName;
-//    newOrgToInsert.CompanyId = newOrganization.CompanyId;
-//    newOrgToInsert.VatNumber = newOrganization.VatNumber;
-//    newOrgToInsert.Description = newOrganization.Description;
-//    newOrgToInsert.Email = newOrganization.Email;
-//    newOrgToInsert.PhoneNumber = newOrganization.PhoneNumber;
-//    newOrgToInsert.Type = newOrganization.Type;
-//    newOrgToInsert.AddressId = newOrganization.AddressId;
-//    newOrgToInsert.IsActive = newOrganization.IsActive;
-//    newOrgToInsert.IsDeleted = newOrganization.IsDeleted;
-
-//    var organizaionId = organizationBLL.InsertReturnId(newOrgToInsert);
-
-//    return Ok();
-//}
-
-
-
-
-
-// POST: api/Organizations
 
 
 

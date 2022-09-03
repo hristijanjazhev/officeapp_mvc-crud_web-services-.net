@@ -57,16 +57,10 @@ namespace API.Controllers
         // GET: api/Person/5
         #region GET{id}
         [HttpGet]
-        [ResponseType(typeof(Person))]
-        public IHttpActionResult GetPerson(int id)
+        public IHttpActionResult GetPersonById(int id)
         {
-            Person person = db.People.Find(id);
-            if (person == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(person);
+            var persons = personDAL.GetById(id);
+            return Ok();
         }
         #endregion
 
@@ -80,7 +74,7 @@ namespace API.Controllers
             var persons = personBLL.GetById(id);
             return Ok(persons);
         }
-        [HttpPost]
+        [HttpPut]
         public IHttpActionResult UpdatePerson(int id, Models.PersonAddViewModel personAdd)
         {
             Person newPersonToAdd = new Person();
@@ -138,16 +132,13 @@ namespace API.Controllers
         #endregion
 
 
-
         // DELETE: api/Person/5
         #region DELETE
         [HttpDelete]
-        [ResponseType(typeof(Person))]
         public IHttpActionResult DeletePerson(int id)
         {
             Person person = personDAL.GetById(id);
             personDAL.DeletePermanently(person);
-
 
             return Ok();
         }

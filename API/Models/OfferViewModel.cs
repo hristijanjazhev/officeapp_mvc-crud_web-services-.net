@@ -10,6 +10,7 @@ namespace API.Models
         public int OfferId { get; set; }
         public Nullable<int> OrganizationId { get; set; }
         public Nullable<int> PersonId { get; set; }
+        public int InvoiceItemId { get; set; }
         public string OfferNumber { get; set; }
         public double Amount { get; set; }
         public Nullable<double> DiscountPercent { get; set; }
