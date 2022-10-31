@@ -12,47 +12,47 @@
 namespace DAL_EF
 {
 
-using System;
+    using System;
     using System.Collections.Generic;
-    
-public partial class Address
-{
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Address()
+    public partial class Address
     {
 
-        this.Organizations = new HashSet<Organization>();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Address()
+        {
+
+            this.Organizations = new HashSet<Organization>();
+
+        }
+
+
+        public int AddressId { get; set; }
+
+        public string Street { get; set; }
+
+        public string Number { get; set; }
+
+        public string PostCode { get; set; }
+
+        public string City { get; set; }
+
+        public string State { get; set; }
+
+        public string Province { get; set; }
+
+        public string Country { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+        public virtual ICollection<Organization> Organizations { get; set; }
 
     }
-
-
-    public int AddressId { get; set; }
-
-    public string Street { get; set; }
-
-    public string Number { get; set; }
-
-    public string PostCode { get; set; }
-
-    public string City { get; set; }
-
-    public string State { get; set; }
-
-    public string Province { get; set; }
-
-    public string Country { get; set; }
-
-    public bool IsActive { get; set; }
-
-    public bool IsDeleted { get; set; }
-
-
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<Organization> Organizations { get; set; }
-
-}
 
 }
